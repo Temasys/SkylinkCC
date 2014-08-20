@@ -12,8 +12,8 @@ Library versions:
 You'll need a Temasys Developer Account and an API key to use this. [Get it here](https://developer.temasys.com.sg).
 
 - [Getting started](http://temasys.github.io/how-to/2014/08/08/Getting_started_with_WebRTC_and_SkywayJS/)
+- [Introducing SkywayCC](http://temasys.atlassian.net/wiki/display/TPD/Introducing+SkywayCC)
 - [SkywayJS API Docs](http://cdn.temasys.com.sg/skyway/skywayjs/0.3.x/doc/classes/Skyway.html)
-- [Introducing SkywayJS](http://temasys.atlassian.net/wiki/display/TPD/Introducing+SkywayJS)
 - [Developer Console](https://developer.temasys.com.sg) - Get your API key
 
 
