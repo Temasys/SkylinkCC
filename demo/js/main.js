@@ -2,8 +2,7 @@ var Demo = Demo || {};
 // Demo api settings
 Demo.API = {
   //'7d75a8fb-94bf-4451-bc71-ca7d9f362279',
-  apiKey: '7d75a8fb-94bf-4451-bc71-ca7d9f362279',
-  //'5f874168-0079-46fc-ab9d-13931c2baa39',
+  apiKey: '5f874168-0079-46fc-ab9d-13931c2baa39',
   lobby: 'main_lobby',
   user: {},
   peers: []
