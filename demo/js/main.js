@@ -80,7 +80,7 @@ Demo.Skyway.on('peerJoined', function (peerId, peerInfo, isSelf) {
     // Display client only data not agent to agent
     if (peerInfo.userData.userType === Demo.Skyway.PEER_TYPE.CLIENT &&
       !Demo.API.user.status) {
-      Demo.updateUser(Demo.EVENT.WATCHING, 'http://www.w3schools.com/html/mov_bbb.mp4');
+      Demo.updateUser(Demo.EVENT.WATCHING, 'img/advert.mp4');
     } else if ($('#advertVideo').length) {
       $('#advertVideo')[0].src = '';
     }
