@@ -1,0 +1,693 @@
+{
+    "project": {
+        "name": "skywaycc",
+        "description": "Implement Control Center functionalities with SkywayJS",
+        "version": "0.1.0",
+        "url": "https://www.temasys.com.sg/"
+    },
+    "files": {
+        "source\\skywaycc.js": {
+            "name": "source\\skywaycc.js",
+            "modules": {},
+            "classes": {
+                "SkywayCC": 1
+            },
+            "fors": {
+                "Skyway": 1,
+                "SkywayCC": 1
+            },
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "SkywayCC": {
+            "name": "SkywayCC",
+            "shortname": "SkywayCC",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "source\\skywaycc.js",
+            "line": 8,
+            "extends": "Skyway",
+            "requires": [
+                "Skyway"
+            ],
+            "description": "SkywayCC is a implementation for Skyway to create a control center like\nuse-case. Things to take note are:\n- The defaultRoom is the main lobby where all the peers connect to from the\n  beginning. If no defaultRoom specified, the lobby would be the apiKey.\n- Call {{#crossLink \"SkywayCC/connect:method\"}}connect(){{/crossLink}} after\n  {{#crossLink \"Skyway/init:method\"}}init(){{/crossLink}} to connect peer\n  to the main lobby.",
+            "is_constructor": 1,
+            "example": [
+                "\n  // Getting started on how to use Skyway\n  // Note that the defaultRoom is required for SkywayCC if you want\n  // To specify a specific lobby room name\n  var SkywayDemo = new SkywayCC();\n  SkywayDemo.init({\n    defaultRoom: 'lobby',\n    apiKey: 'apiKey'\n  });"
+            ]
+        },
+        "Skyway": {
+            "name": "Skyway",
+            "shortname": "Skyway",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": []
+        }
+    },
+    "classitems": [
+        {
+            "file": "source\\skywaycc.js",
+            "line": 32,
+            "description": "Version of SkywayCC",
+            "itemtype": "attribute",
+            "name": "VERSION",
+            "type": "String",
+            "readonly": "",
+            "since": "0.1.0",
+            "class": "SkywayCC"
+        },
+        {
+            "file": "source\\skywaycc.js",
+            "line": 40,
+            "description": "The ready state of the peer's call if they are ready to join the room.",
+            "itemtype": "attribute",
+            "name": "CALL_READY_STATE",
+            "type": "JSON",
+            "params": [
+                {
+                    "name": "LOBBY",
+                    "description": "Peer is in lobby",
+                    "type": "Integer"
+                },
+                {
+                    "name": "REQUEST_CALL",
+                    "description": "Agent requests to start the call",
+                    "type": "Integer"
+                },
+                {
+                    "name": "START_CALL",
+                    "description": "Agent and Client is ready to start the call.",
+                    "type": "Integer"
+                },
+                {
+                    "name": "ACCEPTED_CALL",
+                    "description": "Client accepted the call",
+                    "type": "Integer"
+                },
+                {
+                    "name": "REJECTED_CALL",
+                    "description": "Client rejected the call.",
+                    "type": "Integer"
+                },
+                {
+                    "name": "UNKNOWN",
+                    "description": "",
+                    "type": "Intger"
+                }
+            ],
+            "readonly": "",
+            "since": "0.1.0",
+            "class": "SkywayCC"
+        },
+        {
+            "file": "source\\skywaycc.js",
+            "line": 60,
+            "description": "Internal array of peer requests",
+            "itemtype": "attribute",
+            "name": "_peerRequests",
+            "type": "Array",
+            "required": 1,
+            "access": "private",
+            "tagname": "",
+            "since": "0.1.0",
+            "class": "SkywayCC"
+        },
+        {
+            "file": "source\\skywaycc.js",
+            "line": 69,
+            "description": "User object",
+            "type": "JSON",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "User Session ID",
+                    "type": "String"
+                },
+                {
+                    "name": "peer",
+                    "description": "PeerConnection object",
+                    "type": "Object"
+                },
+                {
+                    "name": "sid",
+                    "description": "User Secret Session ID",
+                    "type": "String"
+                },
+                {
+                    "name": "apiOwner",
+                    "description": "Owner of the room",
+                    "type": "String"
+                },
+                {
+                    "name": "streams",
+                    "description": "Array of User's MediaStream",
+                    "type": "Array"
+                },
+                {
+                    "name": "timestamp",
+                    "description": "User's timestamp",
+                    "type": "String"
+                },
+                {
+                    "name": "token",
+                    "description": "User access token",
+                    "type": "String"
+                },
+                {
+                    "name": "info",
+                    "description": "Optional. User information",
+                    "type": "JSON",
+                    "props": [
+                        {
+                            "name": "settings",
+                            "description": "Peer stream settings",
+                            "type": "JSON",
+                            "props": [
+                                {
+                                    "name": "audio",
+                                    "description": "",
+                                    "type": "Boolean|JSON"
+                                },
+                                {
+                                    "name": "audio.stereo",
+                                    "description": "",
+                                    "type": "Boolean"
+                                },
+                                {
+                                    "name": "video",
+                                    "description": "",
+                                    "type": "Boolean|JSON"
+                                },
+                                {
+                                    "name": "video.resolution",
+                                    "description": "[Rel: SkywayCC.VIDEO_RESOLUTION]",
+                                    "type": "Bolean|JSON"
+                                },
+                                {
+                                    "name": "video.resolution.width",
+                                    "description": "",
+                                    "type": "Integer"
+                                },
+                                {
+                                    "name": "video.resolution.height",
+                                    "description": "",
+                                    "type": "Integer"
+                                },
+                                {
+                                    "name": "video.frameRate",
+                                    "description": "",
+                                    "type": "Integer"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "mediaStatus",
+                            "description": "Peer stream status.",
+                            "type": "JSON",
+                            "props": [
+                                {
+                                    "name": "audioMuted",
+                                    "description": "If Peer's Audio stream is muted.",
+                                    "type": "Boolean"
+                                },
+                                {
+                                    "name": "videoMuted",
+                                    "description": "If Peer's Video stream is muted.",
+                                    "type": "Boolean"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "userData",
+                            "description": "Peer custom data",
+                            "type": "String|JSON"
+                        },
+                        {
+                            "name": "status",
+                            "description": "Peer call status object.",
+                            "type": "JSON",
+                            "props": [
+                                {
+                                    "name": "userStatus",
+                                    "description": "The current ready state of the user's call.\n  [Rel: SkywayCC.CALL_READY_STATE]",
+                                    "type": "String"
+                                },
+                                {
+                                    "name": "userTargetPeerId",
+                                    "description": "PeerId the call to direct to.",
+                                    "type": "String"
+                                },
+                                {
+                                    "name": "userType",
+                                    "description": "Peer type [Rel: SkywayCC.PEER_TYPE]",
+                                    "type": "String"
+                                },
+                                {
+                                    "name": "userTargetRoom",
+                                    "description": "The targeted Room to join. Default is\n  info.status.userTargetPeerId if not specified.",
+                                    "type": "String"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "required": 1,
+            "access": "private",
+            "tagname": "",
+            "since": "0.1.0",
+            "class": "SkywayCC"
+        },
+        {
+            "file": "source\\skywaycc.js",
+            "line": 104,
+            "description": "If peer is agent or customer. Types are:",
+            "itemtype": "attribute",
+            "name": "PEER_TYPE",
+            "type": "JSON",
+            "params": [
+                {
+                    "name": "CUSTOMER",
+                    "description": "User is customer",
+                    "type": "String"
+                },
+                {
+                    "name": "AGENT",
+                    "description": "User is agent",
+                    "type": "String"
+                }
+            ],
+            "readonly": "",
+            "since": "0.1.0",
+            "class": "SkywayCC"
+        },
+        {
+            "file": "source\\skywaycc.js",
+            "line": 117,
+            "description": "User custom events stored",
+            "itemtype": "attribute",
+            "name": "CUSTOM_EVENT",
+            "type": "JSON",
+            "readonly": "",
+            "final": 1,
+            "since": "0.1.0",
+            "class": "SkywayCC"
+        },
+        {
+            "file": "source\\skywaycc.js",
+            "line": 126,
+            "description": "Connect user to the main lobby.\nPlease call this only after calling\n{{#crossLink \"Skyway/init:method\"}}init(){{/crossLink}}",
+            "itemtype": "method",
+            "name": "connect",
+            "params": [
+                {
+                    "name": "userData",
+                    "description": "The User Data",
+                    "type": "JSON|String"
+                },
+                {
+                    "name": "userEvents",
+                    "description": "The events that would be recognised by Skyway",
+                    "type": "JSON"
+                },
+                {
+                    "name": "userType",
+                    "description": "Deprecated. The peer type [Rel: SkywayCC.PEER_TYPE].\n  This would be removed from the specs once agent and client is identified\n  from the request url.",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n  var EVENT = {\n    STARTING: 'starting',\n    ON_HOLD: 'onhold',\n    IN_CALL: 'incall'\n  };\n  SkywayDemo.connect({\n    'displayName': 'Agent Bob',\n    'timeStamp': (new Date()).toISOString,\n    'status': EVENT.STARTING\n  }, EVENT, SkywayDemo.PEER_TYPE.AGENT);"
+            ],
+            "trigger": "peerJoined, peerRequest",
+            "required": 1,
+            "since": "0.1.0",
+            "class": "SkywayCC"
+        },
+        {
+            "file": "source\\skywaycc.js",
+            "line": 178,
+            "description": "Throw an event with the received private message",
+            "itemtype": "method",
+            "name": "_privateMessageHandler",
+            "params": [
+                {
+                    "name": "message",
+                    "description": "",
+                    "type": "JSON",
+                    "props": [
+                        {
+                            "name": "sender",
+                            "description": "The senderPeerId.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The Data broadcasted",
+                            "type": "JSON|String"
+                        },
+                        {
+                            "name": "userStatus",
+                            "description": "For peerRequest event.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "mid",
+                            "description": "TargetMid",
+                            "type": "String"
+                        },
+                        {
+                            "name": "cid",
+                            "description": "The credentialId",
+                            "type": "String"
+                        },
+                        {
+                            "name": "rid",
+                            "description": "RoomId",
+                            "type": "String"
+                        },
+                        {
+                            "name": "type",
+                            "description": "Message type",
+                            "type": "String"
+                        }
+                    ]
+                }
+            ],
+            "trigger": "privateMessage",
+            "access": "private",
+            "tagname": "",
+            "since": "0.1.0",
+            "class": "SkywayCC"
+        },
+        {
+            "file": "source\\skywaycc.js",
+            "line": 202,
+            "description": "Throw an event with the received private message",
+            "itemtype": "method",
+            "name": "_publicMessageHandler",
+            "params": [
+                {
+                    "name": "message",
+                    "description": "",
+                    "type": "JSON",
+                    "props": [
+                        {
+                            "name": "sender",
+                            "description": "The senderPeerId.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The Data broadcasted",
+                            "type": "JSON|String"
+                        },
+                        {
+                            "name": "userStatus",
+                            "description": "For peerRequest event",
+                            "type": "JSON"
+                        },
+                        {
+                            "name": "mid",
+                            "description": "TargetMid",
+                            "type": "String"
+                        },
+                        {
+                            "name": "cid",
+                            "description": "The credentialId",
+                            "type": "String"
+                        },
+                        {
+                            "name": "rid",
+                            "description": "RoomId",
+                            "type": "String"
+                        },
+                        {
+                            "name": "type",
+                            "description": "Message type",
+                            "type": "String"
+                        }
+                    ]
+                }
+            ],
+            "trigger": "publicMessage",
+            "access": "private",
+            "tagname": "",
+            "since": "0.1.0",
+            "class": "SkywayCC"
+        },
+        {
+            "file": "source\\skywaycc.js",
+            "line": 225,
+            "description": "Handles all user status event changes",
+            "itemtype": "method",
+            "name": "_userStatusHandler",
+            "params": [
+                {
+                    "name": "message",
+                    "description": "",
+                    "type": "JSON",
+                    "props": [
+                        {
+                            "name": "sender",
+                            "description": "The senderPeerId.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "data",
+                            "description": "The Data broadcasted",
+                            "type": "JSON|String"
+                        },
+                        {
+                            "name": "userStatus",
+                            "description": "For peerRequest event.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "mid",
+                            "description": "TargetMid",
+                            "type": "String"
+                        },
+                        {
+                            "name": "cid",
+                            "description": "The credentialId",
+                            "type": "String"
+                        },
+                        {
+                            "name": "rid",
+                            "description": "RoomId",
+                            "type": "String"
+                        },
+                        {
+                            "name": "type",
+                            "description": "Message type",
+                            "type": "String"
+                        }
+                    ]
+                }
+            ],
+            "trigger": "privateMessage",
+            "access": "private",
+            "tagname": "",
+            "since": "0.1.0",
+            "class": "SkywayCC"
+        },
+        {
+            "file": "source\\skywaycc.js",
+            "line": 266,
+            "description": "Trigger a event that is parsed in\n{{#crossLink \"SkywayCC/connect:method\"}}connect(){{/crossLink}} for self.\nNote: It is only received by self.\nUse {{#crossLink \"Skyway/sendPrivateMessage:method\"}}sendPrivateMessage(){{/crossLink}}\nto broadcast a private event or\n{{#crossLink \"Skyway/sendPublicMessage:method\"}}sendPublicMessage(){{/crossLink}}\nto broadcast a public event.",
+            "itemtype": "method",
+            "name": "startEvent",
+            "params": [
+                {
+                    "name": "userData",
+                    "description": "The peer's updated user data to send over.",
+                    "type": "JSON|String"
+                },
+                {
+                    "name": "userEvent",
+                    "description": "The event to be trigged.",
+                    "type": "String"
+                },
+                {
+                    "name": "userEventParams",
+                    "description": "The event params.",
+                    "type": "JSON|String|Array"
+                }
+            ],
+            "example": [
+                "\n  var userData = SkywayDemo.getUserData().userData;\n  userData.status = 'newEvent';\n  SkywayDemo.startEvent(userData, 'newEvent', {\n    'startAdvert': true,\n    'UUID': 'XXXX-XXX-XXX'\n  });\n  SkywayDemo.on('newEvent', function (params) {\n    // ....\n  });"
+            ],
+            "trigger": "[customEvent]",
+            "since": "0.1.0",
+            "class": "SkywayCC"
+        },
+        {
+            "file": "source\\skywaycc.js",
+            "line": 311,
+            "description": "Step 1: Agent requests to start the call to client",
+            "itemtype": "method",
+            "name": "agentRequestCall",
+            "params": [
+                {
+                    "name": "clientPeerId",
+                    "description": "Client peerId to start call to.",
+                    "type": "String"
+                },
+                {
+                    "name": "room",
+                    "description": "Room to ask client to join in",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n  // Example 1: Request call\n  SkywayDemo.agentRequestCall(peerId);\n\n  // Example 2: Request call with a specific room\n  SkywayDemo.agentRequestCall(peerId, room);"
+            ],
+            "trigger": "peerRequest",
+            "since": "0.1.0",
+            "class": "SkywayCC"
+        },
+        {
+            "file": "source\\skywaycc.js",
+            "line": 352,
+            "description": "Step 2: Client to accept or reject the call.",
+            "itemtype": "method",
+            "name": "acceptRequestCall",
+            "params": [
+                {
+                    "name": "agentPeerId",
+                    "description": "PeerId of the agent.",
+                    "type": "String"
+                },
+                {
+                    "name": "accept",
+                    "description": "If client accepts agent request or not.",
+                    "type": "Boolean"
+                }
+            ],
+            "example": [
+                "\n  SkywayDemo.on('peerRequest', function (peerId, peerStatus, isSelf)) {\n    if (!isSelf) {\n      if (peerStatus.userStatus === SkywayDemo.CALL_STATUS.REQUEST_CALL) {\n        var result = confirm('Do you want to accept the call?');\n        SkywayDemo.acceptRequestCall(peerId, result);\n      }\n    }\n  });"
+            ],
+            "trigger": "peerRequest",
+            "since": "0.1.0",
+            "class": "SkywayCC"
+        },
+        {
+            "file": "source\\skywaycc.js",
+            "line": 390,
+            "description": "Step 3: Start the call. You may call method\n{{#crossLink \"Skyway/init:method\"}}joinRoom(){{/crossLink}} to start the call.\nRequest a call for agent",
+            "itemtype": "method",
+            "name": "startRequestCall",
+            "params": [
+                {
+                    "name": "room",
+                    "description": "Room to ask client to join in",
+                    "type": "String"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback after the room is ready to join",
+                    "type": "Function"
+                }
+            ],
+            "example": [
+                "\n  SkywayDemo.on('peerRequest', function (peerId, peerStatus, isSelf)) {\n    if (!isSelf) {\n      if (peerStatus.userStatus === SkywayDemo.CALL_STATUS.START_CALL) {\n        SkywayDemo.startRequestCall(peerId, function (targetRoom) {\n          SkywayDemo.joinRoom(targetRoom, {\n            audio: true,\n            video: true\n          });\n        });\n      }\n    }\n  });"
+            ],
+            "trigger": "peerRequest",
+            "since": "0.1.0",
+            "class": "SkywayCC"
+        },
+        {
+            "file": "source\\skywaycc.js",
+            "line": 446,
+            "description": "Event fired when a peer request has changed changed.",
+            "itemtype": "event",
+            "name": "peerRequest",
+            "params": [
+                {
+                    "name": "peerId",
+                    "description": "PeerId of the peer that has a call ready state changed.",
+                    "type": "String"
+                },
+                {
+                    "name": "peerStatus",
+                    "description": "Peer's peerStatus object.",
+                    "type": "JSON",
+                    "props": [
+                        {
+                            "name": "userStatus",
+                            "description": "Peer userStatus [Rel: SkywayCC.CALL_STATUS]",
+                            "type": "JSON"
+                        },
+                        {
+                            "name": "userType",
+                            "description": "Peer user type [Rel: SkywayCC.PEER_TYPE]",
+                            "type": "Boolean|JSON"
+                        }
+                    ]
+                },
+                {
+                    "name": "peerInfo.userTargetPeerId",
+                    "description": "Peer target directed call to.",
+                    "type": "String|JSON"
+                },
+                {
+                    "name": "isSelf",
+                    "description": "Is the Peer self.",
+                    "type": "Boolean"
+                }
+            ],
+            "since": "0.1.0",
+            "class": "SkywayCC"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "param name missing: {Intger}",
+            "line": " source\\skywaycc.js:40"
+        },
+        {
+            "message": "unknown tag: trigger",
+            "line": " source\\skywaycc.js:126"
+        },
+        {
+            "message": "unknown tag: trigger",
+            "line": " source\\skywaycc.js:178"
+        },
+        {
+            "message": "unknown tag: trigger",
+            "line": " source\\skywaycc.js:202"
+        },
+        {
+            "message": "unknown tag: trigger",
+            "line": " source\\skywaycc.js:225"
+        },
+        {
+            "message": "unknown tag: trigger",
+            "line": " source\\skywaycc.js:266"
+        },
+        {
+            "message": "unknown tag: trigger",
+            "line": " source\\skywaycc.js:311"
+        },
+        {
+            "message": "unknown tag: trigger",
+            "line": " source\\skywaycc.js:352"
+        },
+        {
+            "message": "unknown tag: trigger",
+            "line": " source\\skywaycc.js:390"
+        },
+        {
+            "message": "Missing item type\nUser object",
+            "line": " source\\skywaycc.js:69"
+        }
+    ]
+}

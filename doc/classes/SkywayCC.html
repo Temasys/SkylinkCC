@@ -1,0 +1,2303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>SkywayCC - skywaycc</title>
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:400,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/ico" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.svg" title="skywaycc"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <span>
+                API Docs for: <a href="http://temasys.github.io">0.1.0</a>
+            </span>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Skyway.html">Skyway</a></li>
+            
+                <li><a href="../classes/SkywayCC.html">SkywayCC</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1>SkywayCC Class</h1>
+<div class="box meta">
+    
+
+    
+        <div class="extends">
+            Extends <a href="../classes/Skyway.html" class="crosslink">Skyway</a>
+        </div>
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="../files/source_skywaycc.js.html#l8"><code>source\skywaycc.js:8</code></a>
+        </div>
+    
+
+    
+
+    
+</div>
+
+
+
+<div class="box intro">
+    <p>SkywayCC is a implementation for Skyway to create a control center like
+use-case. Things to take note are:</p>
+<ul>
+<li>The defaultRoom is the main lobby where all the peers connect to from the
+beginning. If no defaultRoom specified, the lobby would be the apiKey.</li>
+<li>Call <a href="../classes/SkywayCC.html#method_connect" class="crosslink">connect()</a> after
+Skyway/init:method to connect peer
+to the main lobby.</li>
+</ul>
+
+</div>
+
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+        <div id="method_SkywayCC" class="method item">
+    <h3 class="name"><code>SkywayCC</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/source_skywaycc.js.html#l8"><code>source\skywaycc.js:8</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <pre class="example-content prettyprint">
+                <p>  // Getting started on how to use Skyway
+  // Note that the defaultRoom is required for SkywayCC if you want
+  // To specify a specific lobby room name
+  var SkywayDemo = new SkywayCC();
+  SkywayDemo.init({
+    defaultRoom: &#39;lobby&#39;,
+    apiKey: &#39;apiKey&#39;
+  });</p>
+
+            </pre>
+        </div>
+    
+</div>
+    </div>
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+        
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+        
+        
+        
+            <li class="api-class-tab attrs"><a href="#attrs">Attributes</a></li>
+        
+        
+            <li class="api-class-tab events"><a href="#events">Events</a></li>
+        
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+            
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods extends">
+                        
+                            <li class="index-item method private">
+                                <a href="#method__privateMessageHandler">_privateMessageHandler</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__publicMessageHandler">_publicMessageHandler</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__userStatusHandler">_userStatusHandler</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_acceptRequestCall">acceptRequestCall</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_agentRequestCall">agentRequestCall</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_connect">connect</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_startEvent">startEvent</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_startRequestCall">startRequestCall</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+
+            
+                <div class="index-section attrs">
+                    <h3>Attributes</h3>
+
+                    <ul class="index-list attrs extends">
+                        
+                            <li class="index-item attr private">
+                                <a href="#attr__peerRequests">_peerRequests</a>
+                            </li>
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_CALL_READY_STATE">CALL_READY_STATE</a>
+                            </li>
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_CUSTOM_EVENT">CUSTOM_EVENT</a>
+                            </li>
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_PEER_TYPE">PEER_TYPE</a>
+                            </li>
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_VERSION">VERSION</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+                <div class="index-section events">
+                    <h3>Events</h3>
+
+                    <ul class="index-list events extends">
+                        
+                            <li class="index-item event">
+                                <a href="#event_peerRequest">peerRequest</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+        </div>
+
+        
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method__privateMessageHandler" class="method item private">
+    <h3 class="name"><code>_privateMessageHandler</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>message</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <p class="trigger">
+            <h4>Triggers:</h4>
+            privateMessage
+        </p>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/source_skywaycc.js.html#l178"><code>source\skywaycc.js:178</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Throw an event with the received private message</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">message</code>
+                        <span class="type">JSON</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">sender</code>
+                                    <span class="type">String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>The senderPeerId.</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">data</code>
+                                    <span class="type">JSON | String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>The Data broadcasted</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">userStatus</code>
+                                    <span class="type">String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>For peerRequest event.</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">mid</code>
+                                    <span class="type">String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>TargetMid</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">cid</code>
+                                    <span class="type">String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>The credentialId</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">rid</code>
+                                    <span class="type">String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>RoomId</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">type</code>
+                                    <span class="type">String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Message type</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+                
+                    <div id="method__publicMessageHandler" class="method item private">
+    <h3 class="name"><code>_publicMessageHandler</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>message</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <p class="trigger">
+            <h4>Triggers:</h4>
+            publicMessage
+        </p>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/source_skywaycc.js.html#l202"><code>source\skywaycc.js:202</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Throw an event with the received private message</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">message</code>
+                        <span class="type">JSON</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">sender</code>
+                                    <span class="type">String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>The senderPeerId.</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">data</code>
+                                    <span class="type">JSON | String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>The Data broadcasted</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">userStatus</code>
+                                    <span class="type">JSON</span>
+                                
+
+                                <div class="param-description">
+                                    <p>For peerRequest event</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">mid</code>
+                                    <span class="type">String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>TargetMid</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">cid</code>
+                                    <span class="type">String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>The credentialId</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">rid</code>
+                                    <span class="type">String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>RoomId</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">type</code>
+                                    <span class="type">String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Message type</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+                
+                    <div id="method__userStatusHandler" class="method item private">
+    <h3 class="name"><code>_userStatusHandler</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>message</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <p class="trigger">
+            <h4>Triggers:</h4>
+            privateMessage
+        </p>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/source_skywaycc.js.html#l225"><code>source\skywaycc.js:225</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Handles all user status event changes</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">message</code>
+                        <span class="type">JSON</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">sender</code>
+                                    <span class="type">String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>The senderPeerId.</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">data</code>
+                                    <span class="type">JSON | String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>The Data broadcasted</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">userStatus</code>
+                                    <span class="type">String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>For peerRequest event.</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">mid</code>
+                                    <span class="type">String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>TargetMid</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">cid</code>
+                                    <span class="type">String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>The credentialId</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">rid</code>
+                                    <span class="type">String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>RoomId</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">type</code>
+                                    <span class="type">String</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Message type</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+                
+                    <div id="method_acceptRequestCall" class="method item">
+    <h3 class="name"><code>acceptRequestCall</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>agentPeerId</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>accept</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <p class="trigger">
+            <h4>Triggers:</h4>
+            peerRequest
+        </p>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/source_skywaycc.js.html#l352"><code>source\skywaycc.js:352</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Step 2: Client to accept or reject the call.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">agentPeerId</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>PeerId of the agent.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">accept</code>
+                        <span class="type">Boolean</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>If client accepts agent request or not.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <pre class="example-content prettyprint">
+                <p>  SkywayDemo.on(&#39;peerRequest&#39;, function (peerId, peerStatus, isSelf)) {
+    if (!isSelf) {
+      if (peerStatus.userStatus === SkywayDemo.CALL_STATUS.REQUEST_CALL) {
+        var result = confirm(&#39;Do you want to accept the call?&#39;);
+        SkywayDemo.acceptRequestCall(peerId, result);
+      }
+    }
+  });</p>
+
+            </pre>
+        </div>
+    
+</div>
+                
+                    <div id="method_agentRequestCall" class="method item">
+    <h3 class="name"><code>agentRequestCall</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>clientPeerId</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>room</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <p class="trigger">
+            <h4>Triggers:</h4>
+            peerRequest
+        </p>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/source_skywaycc.js.html#l311"><code>source\skywaycc.js:311</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Step 1: Agent requests to start the call to client</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">clientPeerId</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Client peerId to start call to.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">room</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Room to ask client to join in</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <pre class="example-content prettyprint">
+                <p>  // Example 1: Request call
+  SkywayDemo.agentRequestCall(peerId);</p>
+<p>  // Example 2: Request call with a specific room
+  SkywayDemo.agentRequestCall(peerId, room);</p>
+
+            </pre>
+        </div>
+    
+</div>
+                
+                    <div id="method_connect" class="method item">
+    <h3 class="name"><code>connect</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>userData</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>userEvents</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>userType</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <p class="trigger">
+            <h4>Triggers:</h4>
+            peerJoined, peerRequest
+        </p>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/source_skywaycc.js.html#l126"><code>source\skywaycc.js:126</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Connect user to the main lobby.
+Please call this only after calling
+Skyway/init:method</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">userData</code>
+                        <span class="type">JSON | String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The User Data</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">userEvents</code>
+                        <span class="type">JSON</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The events that would be recognised by Skyway</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">userType</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Deprecated. The peer type [Rel: SkywayCC.PEER_TYPE].
+  This would be removed from the specs once agent and client is identified
+  from the request url.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <pre class="example-content prettyprint">
+                <p>  var EVENT = {
+    STARTING: &#39;starting&#39;,
+    ON_HOLD: &#39;onhold&#39;,
+    IN_CALL: &#39;incall&#39;
+  };
+  SkywayDemo.connect({
+    &#39;displayName&#39;: &#39;Agent Bob&#39;,
+    &#39;timeStamp&#39;: (new Date()).toISOString,
+    &#39;status&#39;: EVENT.STARTING
+  }, EVENT, SkywayDemo.PEER_TYPE.AGENT);</p>
+
+            </pre>
+        </div>
+    
+</div>
+                
+                    <div id="method_startEvent" class="method item">
+    <h3 class="name"><code>startEvent</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>userData</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>userEvent</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>userEventParams</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <p class="trigger">
+            <h4>Triggers:</h4>
+            [customEvent]
+        </p>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/source_skywaycc.js.html#l266"><code>source\skywaycc.js:266</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Trigger a event that is parsed in
+<a href="../classes/SkywayCC.html#method_connect" class="crosslink">connect()</a> for self.
+Note: It is only received by self.
+Use Skyway/sendPrivateMessage:method
+to broadcast a private event or
+Skyway/sendPublicMessage:method
+to broadcast a public event.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">userData</code>
+                        <span class="type">JSON | String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The peer&#39;s updated user data to send over.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">userEvent</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The event to be trigged.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">userEventParams</code>
+                        <span class="type">JSON | String | Array</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The event params.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <pre class="example-content prettyprint">
+                <p>  var userData = SkywayDemo.getUserData().userData;
+  userData.status = &#39;newEvent&#39;;
+  SkywayDemo.startEvent(userData, &#39;newEvent&#39;, {
+    &#39;startAdvert&#39;: true,
+    &#39;UUID&#39;: &#39;XXXX-XXX-XXX&#39;
+  });
+  SkywayDemo.on(&#39;newEvent&#39;, function (params) {
+    // ....
+  });</p>
+
+            </pre>
+        </div>
+    
+</div>
+                
+                    <div id="method_startRequestCall" class="method item">
+    <h3 class="name"><code>startRequestCall</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>room</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>callback</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <p class="trigger">
+            <h4>Triggers:</h4>
+            peerRequest
+        </p>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/source_skywaycc.js.html#l390"><code>source\skywaycc.js:390</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Step 3: Start the call. You may call method
+Skyway/init:method to start the call.
+Request a call for agent</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">room</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Room to ask client to join in</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">callback</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Callback after the room is ready to join</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <pre class="example-content prettyprint">
+                <p>  SkywayDemo.on(&#39;peerRequest&#39;, function (peerId, peerStatus, isSelf)) {
+    if (!isSelf) {
+      if (peerStatus.userStatus === SkywayDemo.CALL_STATUS.START_CALL) {
+        SkywayDemo.startRequestCall(peerId, function (targetRoom) {
+          SkywayDemo.joinRoom(targetRoom, {
+            audio: true,
+            video: true
+          });
+        });
+      }
+    }
+  });</p>
+
+            </pre>
+        </div>
+    
+</div>
+                
+            </div>
+        
+
+        
+
+        
+            <div id="attrs" class="api-class-tabpanel">
+                <h2 class="off-left">Attributes</h2>
+
+                
+                    <div id="attr__peerRequests" class="attr item private">
+    <a name="config__peerRequests"></a> 
+    <h3 class="name"><code>_peerRequests</code></h3>
+    <span class="type">Array</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag required">required</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/source_skywaycc.js.html#l60"><code>source\skywaycc.js:60</code></a>
+        
+        </p>
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Internal array of peer requests</p>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="attr_CALL_READY_STATE" class="attr item">
+    <a name="config_CALL_READY_STATE"></a> 
+    <h3 class="name"><code>CALL_READY_STATE</code></h3>
+    <span class="type">JSON</span>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag readonly">readonly</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/source_skywaycc.js.html#l40"><code>source\skywaycc.js:40</code></a>
+        
+        </p>
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>The ready state of the peer&#39;s call if they are ready to join the room.</p>
+
+    </div>
+
+    
+
+    
+
+    
+        <div class="params">
+            <h4>Keys:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">LOBBY</code>
+                        <span class="type">Integer</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Peer is in lobby</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">REQUEST_CALL</code>
+                        <span class="type">Integer</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Agent requests to start the call</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">START_CALL</code>
+                        <span class="type">Integer</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Agent and Client is ready to start the call.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">ACCEPTED_CALL</code>
+                        <span class="type">Integer</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Client accepted the call</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">REJECTED_CALL</code>
+                        <span class="type">Integer</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Client rejected the call.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">UNKNOWN</code>
+                        <span class="type">Intger</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="attr_CUSTOM_EVENT" class="attr item">
+    <a name="config_CUSTOM_EVENT"></a> 
+    <h3 class="name"><code>CUSTOM_EVENT</code></h3>
+    <span class="type">JSON</span>
+
+    
+
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag readonly">readonly</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/source_skywaycc.js.html#l117"><code>source\skywaycc.js:117</code></a>
+        
+        </p>
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>User custom events stored</p>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="attr_PEER_TYPE" class="attr item">
+    <a name="config_PEER_TYPE"></a> 
+    <h3 class="name"><code>PEER_TYPE</code></h3>
+    <span class="type">JSON</span>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag readonly">readonly</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/source_skywaycc.js.html#l104"><code>source\skywaycc.js:104</code></a>
+        
+        </p>
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>If peer is agent or customer. Types are:</p>
+
+    </div>
+
+    
+
+    
+
+    
+        <div class="params">
+            <h4>Keys:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">CUSTOMER</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>User is customer</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">AGENT</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>User is agent</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="attr_VERSION" class="attr item">
+    <a name="config_VERSION"></a> 
+    <h3 class="name"><code>VERSION</code></h3>
+    <span class="type">String</span>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag readonly">readonly</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/source_skywaycc.js.html#l32"><code>source\skywaycc.js:32</code></a>
+        
+        </p>
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Version of SkywayCC</p>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+            <div id="events" class="api-class-tabpanel">
+                <h2 class="off-left">Events</h2>
+
+                
+                    <div id="event_peerRequest" class="events item">
+    <h3 class="name"><code>peerRequest</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/source_skywaycc.js.html#l446"><code>source\skywaycc.js:446</code></a>
+        
+        </p>
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Event fired when a peer request has changed changed.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Event Payload:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">peerId</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>PeerId of the peer that has a call ready state changed.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">peerStatus</code>
+                        <span class="type">JSON</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Peer&#39;s peerStatus object.</p>
+
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">userStatus</code>
+                                    <span class="type">JSON</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Peer userStatus [Rel: SkywayCC.CALL_STATUS]</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">userType</code>
+                                    <span class="type">Boolean | JSON</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Peer user type [Rel: SkywayCC.PEER_TYPE]</p>
+
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">peerInfo.userTargetPeerId</code>
+                        <span class="type">String | JSON</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Peer target directed call to.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">isSelf</code>
+                        <span class="type">Boolean</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Is the Peer self.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+
+    
+</div>
+
+                
+            </div>
+        
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
