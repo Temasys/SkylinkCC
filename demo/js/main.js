@@ -3,7 +3,8 @@ var Demo = Demo || {};
 Demo.API = {
   //'7d75a8fb-94bf-4451-bc71-ca7d9f362279',
   apiKey: '5f874168-0079-46fc-ab9d-13931c2baa39',
-  lobby: 'main_lobby',
+  defaultRoom: 'default',
+  lobbyRoom: 'main_lobby',
   user: {},
   peers: []
 };
@@ -37,17 +38,11 @@ Demo.getUserType = function () {
   }
 };
 
-Demo.updateUser = function (newStatus, param) {
-  // update status and trigger it
-  Demo.API.user.info.userData.status = newStatus;
-  Demo.Skyway.startEvent(Demo.API.user.info.userData, newStatus, param);
-};
-
 // Skyway
 // Initialize all the Skyway settings
 Demo.Skyway = new SkywayCC();
 Demo.Skyway.init({
-  defaultRoom: Demo.API.lobby, // the lobby
+  defaultRoom: Demo.API.defaultRoom, // the lobby
   apiKey: Demo.API.apiKey
 });
 
@@ -56,12 +51,11 @@ $(document).ready(function () {
   // after user hits the enter key
   $('#displayName').keyup(function(key) {
     if (key.keyCode === 13) {
-      Demo.Skyway.connect({
+      Demo.Skyway.connect(Demo.API.lobbyRoom, {
         displayName: $(this).val(),
         timeStamp: (new Date()).toISOString(),
-        status: Demo.EVENT.STARTING,
-        userType: Demo.getUserType()
-      }, Demo.EVENT, Demo.getUserType());
+        status: Demo.EVENT.STARTING
+      }, Demo.getUserType());
     }
   });
 
@@ -75,12 +69,15 @@ $(document).ready(function () {
 Demo.Skyway.on('peerJoined', function (peerId, peerInfo, isSelf) {
   if (isSelf) {
     Demo.API.user = Demo.API.user || {};
-    Demo.API.user.info = peerInfo;
-    console.info(peerInfo.userData.userType);
+    Demo.API.user = peerInfo;
     // Display client only data not agent to agent
-    if (peerInfo.userData.userType === Demo.Skyway.PEER_TYPE.CLIENT &&
-      !Demo.API.user.status) {
-      Demo.updateUser(Demo.EVENT.WATCHING, 'img/advert.mp4');
+    if (peerInfo.call.peerType === Demo.Skyway.PEER_TYPE.CLIENT &&
+      Demo.API.user.call.status === Demo.Skyway.CALL_READY_STATE.LOBBY) {
+      Demo.API.user.userData.status = Demo.EVENT.WATCHING;
+      Demo.Skyway.startPeerEvent(Demo.API.user.userData, {
+        name: Demo.EVENT.WATCHING,
+        params: 'img/advert.mp4'
+      });
     } else if ($('#advertVideo').length) {
       $('#advertVideo')[0].src = '';
     }
@@ -89,7 +86,7 @@ Demo.Skyway.on('peerJoined', function (peerId, peerInfo, isSelf) {
     // We should handle from skywaycc to prevent sending information
     // of agent
     if (Demo.getUserType() === Demo.Skyway.PEER_TYPE.AGENT &&
-      peerInfo.userData.userType === Demo.Skyway.PEER_TYPE.CLIENT) {
+      peerInfo.call.peerType === Demo.Skyway.PEER_TYPE.CLIENT) {
       console.info(peerInfo);
       $('#peerList').append('<li>' +
         '<a id="' + peerId + '" href="#" class="clientPeer"><span>' +
@@ -116,21 +113,20 @@ Demo.Skyway.on('addPeerStream', function (peerId, stream, isSelf) {
 });
 
 // Peer request changed. Handshake for call connection
-Demo.Skyway.on('peerRequest', function (peerId, peerStatus, isSelf) {
+Demo.Skyway.on('peerCallRequest', function (peerId, peerInfo, isSelf) {
   if (isSelf) {
-    Demo.API.user.status = peerStatus;
+    Demo.API.user = peerInfo;
   } else {
-    Demo.API.peers[peerId].status = peerStatus;
-    switch(peerStatus.userStatus) {
+    Demo.API.peers[peerId] = peerInfo;
+    switch(peerInfo.call.status) {
     case Demo.Skyway.CALL_READY_STATE.REQUEST_CALL:
       var result = confirm(peerId + ' requested to call you. Accept?');
       Demo.Skyway.acceptRequestCall(peerId, result);
       break;
     case Demo.Skyway.CALL_READY_STATE.ACCEPTED_CALL:
       alert(peerId + ' has accepted your call.');
-      Demo.Skyway.startRequestCall(peerId, function (targetRoom) {
-        Demo.Skyway.joinRoom(targetRoom, {
-          user: Demo.API.user.info.userData,
+      Demo.Skyway.startRequestCall(peerId, function (userInfo, peerInfo) {
+        Demo.Skyway.joinRoom(peerInfo.call.targetRoom, {
           audio: true,
           video: true
         });
@@ -140,9 +136,8 @@ Demo.Skyway.on('peerRequest', function (peerId, peerStatus, isSelf) {
       alert(peerId + ' has rejected your call.');
       break;
     case Demo.Skyway.CALL_READY_STATE.START_CALL:
-      Demo.Skyway.startRequestCall(peerId, function (targetRoom) {
-        Demo.Skyway.joinRoom(targetRoom, {
-          user: Demo.API.user.info.userData,
+      Demo.Skyway.startRequestCall(peerId, function (userInfo, peerInfo) {
+        Demo.Skyway.joinRoom(peerInfo.call.targetRoom, {
           audio: true,
           video: true
         });
@@ -162,10 +157,10 @@ Demo.Skyway.on('peerLeft', function (peerId, isSelf) {
 // A peer's data {status} is updated
 Demo.Skyway.on('peerUpdated', function (peerId, peerInfo, isSelf) {
   if (isSelf) {
-    Demo.API.user.info = peerInfo;
+    Demo.API.user = peerInfo;
   } else {
-    Demo.API.peers[peerId].info = peerInfo;
-    if (peerInfo.userData.userType === Demo.Skyway.PEER_TYPE.CLIENT) {
+    Demo.API.peers[peerId] = peerInfo;
+    if (peerInfo.call.peerType === Demo.Skyway.PEER_TYPE.CLIENT) {
       $('#' + peerId).find('.status').html(peerInfo.userData.status);
     }
   }
@@ -193,7 +188,10 @@ Demo.Skyway.on(Demo.EVENT.WATCHING, function (advertUrl) {
           clearInterval(advertDisplaySecs);
           $('#advertVideo')[0].volume = 1;
           $('#advertVideo')[0].loop = 'loop';
-          Demo.updateUser(Demo.EVENT.ON_HOLD);
+          Demo.API.user.userData.status = Demo.EVENT.ON_HOLD;
+          Demo.Skyway.startPeerEvent(Demo.API.user.userData, {
+            name: Demo.EVENT.ON_HOLD
+          });
         }
       }, 10);
     }
