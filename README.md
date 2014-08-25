@@ -6,13 +6,14 @@ The latest complete version including [Socket.io](http://socket.io/), [AdapterJS
 - `//cdn.temasys.com.sg/skyway/skywayjs/0.3.x/skywaycc.complete.min.js`
 
 Library versions:
-- `//cdn.temasys.com.sg/skyway/skywayjs/0.3.x/skywaycc.min.js`
-- `//cdn.temasys.com.sg/skyway/skywayjs/0.3.x/skywaycc.debug.js`
+- `//cdn.temasys.com.sg/skyway/skywaycc/0.1.0/skywaycc.min.js`
+- `//cdn.temasys.com.sg/skyway/skywaycc/0.1.0/skywaycc.debug.js`
 
 You'll need a Temasys Developer Account and an API key to use this. [Get it here](https://developer.temasys.com.sg).
 
 - [Getting started](http://temasys.github.io/how-to/2014/08/08/Getting_started_with_WebRTC_and_SkywayJS/)
 - [Introducing SkywayCC](http://temasys.atlassian.net/wiki/display/TPD/Introducing+SkywayCC)
+- [SkywayCC API Docs](http://cdn.temasys.com.sg/skyway/skywaycc/0.1.0/doc/classes/SkywayCC.html)
 - [SkywayJS API Docs](http://cdn.temasys.com.sg/skyway/skywayjs/0.3.x/doc/classes/Skyway.html)
 - [Developer Console](https://developer.temasys.com.sg) - Get your API key
 
@@ -41,7 +42,7 @@ Please read how you can find help, contribute and support us advancing SkywayCC 
 
 #### demo
 
-Some demos to help with the development
+Some demos to help with the development. You may access a simple demo called `app` from `http://localhost:8028/demo/app/{agent|client}.html`.
 
 #### doc
 
@@ -57,7 +58,7 @@ The production version of the library and a minified copy of it
 
 #### source
 
-The skyway.js library development files
+The skywaycc.js library development files
 
 #### tests
 
@@ -67,5 +68,3 @@ Tape/Testling tests, currently work-in-progress
 ## License
 
 [APACHE 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
-
-
