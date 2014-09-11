@@ -2,12 +2,12 @@
     "project": {
         "name": "skywaycc",
         "description": "Implement Control Center functionalities with SkywayJS",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "url": "https://www.temasys.com.sg/"
     },
     "files": {
-        "source\\skywaycc.js": {
-            "name": "source\\skywaycc.js",
+        "source/skywaycc.js": {
+            "name": "source/skywaycc.js",
             "modules": {},
             "classes": {
                 "SkywayCC": 1
@@ -28,7 +28,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "file": "source\\skywaycc.js",
+            "file": "source/skywaycc.js",
             "line": 7,
             "extends": "Skyway",
             "requires": [
@@ -43,7 +43,7 @@
     },
     "classitems": [
         {
-            "file": "source\\skywaycc.js",
+            "file": "source/skywaycc.js",
             "line": 34,
             "description": "Version of SkywayCC",
             "itemtype": "attribute",
@@ -54,7 +54,7 @@
             "class": "SkywayCC"
         },
         {
-            "file": "source\\skywaycc.js",
+            "file": "source/skywaycc.js",
             "line": 42,
             "description": "State if User is in lobby room or not",
             "itemtype": "attribute",
@@ -67,7 +67,7 @@
             "class": "SkywayCC"
         },
         {
-            "file": "source\\skywaycc.js",
+            "file": "source/skywaycc.js",
             "line": 51,
             "description": "The default lobby room.",
             "itemtype": "attribute",
@@ -80,7 +80,7 @@
             "class": "SkywayCC"
         },
         {
-            "file": "source\\skywaycc.js",
+            "file": "source/skywaycc.js",
             "line": 60,
             "description": "The lobby room",
             "itemtype": "attribute",
@@ -94,7 +94,7 @@
             "class": "SkywayCC"
         },
         {
-            "file": "source\\skywaycc.js",
+            "file": "source/skywaycc.js",
             "line": 70,
             "description": "The ready state of the peer's call if they are ready to join the room.",
             "itemtype": "attribute",
@@ -137,7 +137,7 @@
             "class": "SkywayCC"
         },
         {
-            "file": "source\\skywaycc.js",
+            "file": "source/skywaycc.js",
             "line": 90,
             "description": "User object",
             "itemtype": "attribute",
@@ -285,7 +285,7 @@
             "class": "SkywayCC"
         },
         {
-            "file": "source\\skywaycc.js",
+            "file": "source/skywaycc.js",
             "line": 126,
             "description": "Object to store temporary information",
             "itemtype": "attribute",
@@ -297,7 +297,7 @@
             "class": "SkywayCC"
         },
         {
-            "file": "source\\skywaycc.js",
+            "file": "source/skywaycc.js",
             "line": 134,
             "description": "If peer is agent or customer. Types are:",
             "itemtype": "attribute",
@@ -320,7 +320,7 @@
             "class": "SkywayCC"
         },
         {
-            "file": "source\\skywaycc.js",
+            "file": "source/skywaycc.js",
             "line": 147,
             "description": "Connect user to the main lobby.\n- Please call this only after calling Skyway.init().\n- To disconect from the lobby, please call Skyway.leaveRoom().",
             "itemtype": "method",
@@ -351,7 +351,7 @@
             "class": "SkywayCC"
         },
         {
-            "file": "source\\skywaycc.js",
+            "file": "source/skywaycc.js",
             "line": 193,
             "description": "We just joined a room! Let's send a nice message to all to let them know I'm in.",
             "itemtype": "method",
@@ -397,7 +397,7 @@
             "class": "SkywayCC"
         },
         {
-            "file": "source\\skywaycc.js",
+            "file": "source/skywaycc.js",
             "line": 250,
             "description": "Throw an event with the received private message",
             "itemtype": "method",
@@ -448,7 +448,7 @@
             "class": "SkywayCC"
         },
         {
-            "file": "source\\skywaycc.js",
+            "file": "source/skywaycc.js",
             "line": 274,
             "description": "Throw an event with the received private message",
             "itemtype": "method",
@@ -499,7 +499,7 @@
             "class": "SkywayCC"
         },
         {
-            "file": "source\\skywaycc.js",
+            "file": "source/skywaycc.js",
             "line": 298,
             "description": "Handles all call status event changes",
             "itemtype": "method",
@@ -560,7 +560,7 @@
             "class": "SkywayCC"
         },
         {
-            "file": "source\\skywaycc.js",
+            "file": "source/skywaycc.js",
             "line": 339,
             "description": "Trigger a event after updating userData.",
             "itemtype": "method",
@@ -597,7 +597,7 @@
             "class": "SkywayCC"
         },
         {
-            "file": "source\\skywaycc.js",
+            "file": "source/skywaycc.js",
             "line": 381,
             "description": "Handles all call states.",
             "itemtype": "method",
@@ -648,7 +648,7 @@
             "class": "SkywayCC"
         },
         {
-            "file": "source\\skywaycc.js",
+            "file": "source/skywaycc.js",
             "line": 431,
             "description": "Step 1: Agent requests to start the call to client",
             "itemtype": "method",
@@ -673,7 +673,7 @@
             "class": "SkywayCC"
         },
         {
-            "file": "source\\skywaycc.js",
+            "file": "source/skywaycc.js",
             "line": 454,
             "description": "Step 2: Client to accept or reject the call.",
             "itemtype": "method",
@@ -698,7 +698,7 @@
             "class": "SkywayCC"
         },
         {
-            "file": "source\\skywaycc.js",
+            "file": "source/skywaycc.js",
             "line": 481,
             "description": "Step 3: Start the call. You may call method\n- \"peerLeft\" would be triggered because user left the lobby room\n- Call Skyway.joinRoom() to start the call.\nRequest a call for agent",
             "itemtype": "method",
@@ -720,15 +720,15 @@
                 "type": "JSON"
             },
             "example": [
-                "\n  SkywayDemo.on('peerCallRequest', function (peerId, peerInfo, isSelf)) {\n    if (!isSelf) {\n      if (peerInfo.call.status === SkywayDemo.CALL_STATUS.START_CALL) {\n        SkywayDemo.startRequestCall(peerId, function (peerInfo) {\n          SkywayDemo.joinRoom(peerInfo.call.targetRoom, {\n            audio: true,\n            video: true\n          });\n        });\n      }\n    }\n  });"
+                "\n  SkywayDemo.on('peerCallRequest', function (peerId, peerInfo, isSelf)) {\n    if (!isSelf) {\n      if (peerInfo.call.status === SkywayDemo.CALL_STATUS.START_CALL) {\n        SkywayDemo.startRequestCall(peerId, function (userInfo, peerInfo) {\n          SkywayDemo.joinRoom(peerInfo.call.targetRoom, {\n            audio: true,\n            video: true\n          });\n        });\n      }\n    }\n  });"
             ],
             "trigger": "peerCallRequest, peerLeft",
-            "since": "0.1.0",
+            "since": "0.2.0",
             "class": "SkywayCC"
         },
         {
-            "file": "source\\skywaycc.js",
-            "line": 532,
+            "file": "source/skywaycc.js",
+            "line": 536,
             "description": "Event fired when a peer call request has changed.",
             "itemtype": "event",
             "name": "peerCallRequest",
@@ -849,47 +849,47 @@
     "warnings": [
         {
             "message": "param name missing: {Intger}",
-            "line": " source\\skywaycc.js:70"
+            "line": " source/skywaycc.js:70"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source\\skywaycc.js:147"
+            "line": " source/skywaycc.js:147"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source\\skywaycc.js:193"
+            "line": " source/skywaycc.js:193"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source\\skywaycc.js:250"
+            "line": " source/skywaycc.js:250"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source\\skywaycc.js:274"
+            "line": " source/skywaycc.js:274"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source\\skywaycc.js:298"
+            "line": " source/skywaycc.js:298"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source\\skywaycc.js:339"
+            "line": " source/skywaycc.js:339"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source\\skywaycc.js:381"
+            "line": " source/skywaycc.js:381"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source\\skywaycc.js:431"
+            "line": " source/skywaycc.js:431"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source\\skywaycc.js:454"
+            "line": " source/skywaycc.js:454"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source\\skywaycc.js:481"
+            "line": " source/skywaycc.js:481"
         }
     ]
 }

@@ -1,29 +1,22 @@
 var Demo = Demo || {};
-// Demo api settings
-Demo.API = {
-  //'7d75a8fb-94bf-4451-bc71-ca7d9f362279',
-  apiKey: '5f874168-0079-46fc-ab9d-13931c2baa39',
-  defaultRoom: 'default',
-  lobbyRoom: 'main_lobby',
-  user: {},
-  peers: []
-};
+
+Demo.User = {};
+Demo.Peers = [];
+Demo.Advert = 'img/sample_video.mp4';
 
 // Demo events
-Demo.EVENT = {
-  STARTING: 'starting',
-  WATCHING: 'watching',
-  ON_HOLD: 'onhold'
+Demo.Events = {
+  starting: 'starting',
+  watching: 'watching',
+  onhold: 'onhold'
 };
 
 // Demo media streams
-Demo.Streams = {
-  local: '',
-  remote: []
-};
+Demo.Streams = {};
 
 // Demo functions
-Demo.getUserType = function () {
+Demo.Methods = {};
+Demo.Methods.getUserType = function () {
   // get current user type via url
   // E.g client.html for client
   // agent.html for agent
@@ -38,6 +31,26 @@ Demo.getUserType = function () {
   }
 };
 
+// DOM events
+$(document).ready(function () {
+  //---------------------------------------------------
+  // after user hits the enter key
+  $('#displayName').keyup(function(key) {
+    if (key.keyCode === 13) {
+      Demo.Skyway.connect(Demo.API.lobbyRoom, {
+        displayName: $(this).val(),
+        timeStamp: (new Date()).toISOString(),
+        status: Demo.Events.starting
+      }, Demo.Methods.getUserType());
+    }
+  });
+  //---------------------------------------------------
+  // client item click
+  $('#peerList').on('click', '.clientPeer', function () {
+    Demo.Skyway.agentRequestCall($(this).attr('id'));
+  });
+});
+//---------------------------------------------------
 // Skyway
 // Initialize all the Skyway settings
 Demo.Skyway = new SkywayCC();
@@ -45,49 +58,30 @@ Demo.Skyway.init({
   defaultRoom: Demo.API.defaultRoom, // the lobby
   apiKey: Demo.API.apiKey
 });
-
-// DOM events
-$(document).ready(function () {
-  // after user hits the enter key
-  $('#displayName').keyup(function(key) {
-    if (key.keyCode === 13) {
-      Demo.Skyway.connect(Demo.API.lobbyRoom, {
-        displayName: $(this).val(),
-        timeStamp: (new Date()).toISOString(),
-        status: Demo.EVENT.STARTING
-      }, Demo.getUserType());
-    }
-  });
-
-  // client item click
-  $('#peerList').on('click', '.clientPeer', function () {
-    Demo.Skyway.agentRequestCall($(this).attr('id'));
-  });
-});
-
+//---------------------------------------------------
 // A peer has joined a room
 Demo.Skyway.on('peerJoined', function (peerId, peerInfo, isSelf) {
+  console.info(peerInfo);
   if (isSelf) {
-    Demo.API.user = Demo.API.user || {};
-    Demo.API.user = peerInfo;
+    Demo.User = Demo.User || {};
+    Demo.User = peerInfo;
     // Display client only data not agent to agent
     if (peerInfo.call.peerType === Demo.Skyway.PEER_TYPE.CLIENT &&
-      Demo.API.user.call.status === Demo.Skyway.CALL_READY_STATE.LOBBY) {
-      Demo.API.user.userData.status = Demo.EVENT.WATCHING;
-      Demo.Skyway.startPeerEvent(Demo.API.user.userData, {
-        name: Demo.EVENT.WATCHING,
-        params: 'img/advert.mp4'
+      Demo.User.call.status === Demo.Skyway.CALL_READY_STATE.LOBBY) {
+      Demo.User.userData.status = Demo.Events.watching;
+      Demo.Skyway.startPeerEvent(Demo.User.userData, {
+        name: Demo.Events.watching,
+        params: Demo.Advert
       });
     } else if ($('#advertVideo').length) {
       $('#advertVideo')[0].src = '';
     }
   } else {
-    Demo.API.peers[peerId] = peerInfo;
+    Demo.Peers[peerId] = peerInfo;
     // We should handle from skywaycc to prevent sending information
     // of agent
-    if (Demo.getUserType() === Demo.Skyway.PEER_TYPE.AGENT &&
+    if (Demo.Methods.getUserType() === Demo.Skyway.PEER_TYPE.AGENT &&
       peerInfo.call.peerType === Demo.Skyway.PEER_TYPE.CLIENT) {
-      console.info(peerInfo);
       $('#peerList').append('<li>' +
         '<a id="' + peerId + '" href="#" class="clientPeer"><span>' +
         peerInfo.userData.displayName + '</span>' +
@@ -97,27 +91,27 @@ Demo.Skyway.on('peerJoined', function (peerId, peerInfo, isSelf) {
     }
   }
 });
-
+//---------------------------------------------------
 // Add peer media stream
-Demo.Skyway.on('addPeerStream', function (peerId, stream, isSelf) {
+// Note that 'addPeerStream' is now 'incomingStream'
+Demo.Skyway.on('incomingStream', function (peerId, stream, isSelf) {
+  Demo.Streams[peerId] = stream;
   if (isSelf) {
-    Demo.Streams.local = stream;
     attachMediaStream($('#localVideo')[0], stream);
     $('#peerList').hide();
   } else {
-    Demo.Streams.remote[peerId] = stream;
     attachMediaStream($('#remoteVideo')[0], stream);
   }
   $('.display-list').hide();
   $('#advertVideo').hide();
 });
-
+//---------------------------------------------------
 // Peer request changed. Handshake for call connection
 Demo.Skyway.on('peerCallRequest', function (peerId, peerInfo, isSelf) {
   if (isSelf) {
-    Demo.API.user = peerInfo;
+    Demo.User = peerInfo;
   } else {
-    Demo.API.peers[peerId] = peerInfo;
+    Demo.Peers[peerId] = peerInfo;
     switch(peerInfo.call.status) {
     case Demo.Skyway.CALL_READY_STATE.REQUEST_CALL:
       var result = confirm(peerId + ' requested to call you. Accept?');
@@ -125,7 +119,8 @@ Demo.Skyway.on('peerCallRequest', function (peerId, peerInfo, isSelf) {
       break;
     case Demo.Skyway.CALL_READY_STATE.ACCEPTED_CALL:
       alert(peerId + ' has accepted your call.');
-      Demo.Skyway.startRequestCall(peerId, function (userInfo, peerInfo) {
+      Demo.Skyway.startRequestCall(peerId, function (userInfo, testInfo) {
+        console.info(testInfo);
         Demo.Skyway.joinRoom(peerInfo.call.targetRoom, {
           audio: true,
           video: true
@@ -136,7 +131,8 @@ Demo.Skyway.on('peerCallRequest', function (peerId, peerInfo, isSelf) {
       alert(peerId + ' has rejected your call.');
       break;
     case Demo.Skyway.CALL_READY_STATE.START_CALL:
-      Demo.Skyway.startRequestCall(peerId, function (userInfo, peerInfo) {
+      Demo.Skyway.startRequestCall(peerId, function (userInfo, testInfo) {
+        console.info(testInfo);
         Demo.Skyway.joinRoom(peerInfo.call.targetRoom, {
           audio: true,
           video: true
@@ -145,29 +141,30 @@ Demo.Skyway.on('peerCallRequest', function (peerId, peerInfo, isSelf) {
     }
   }
 });
-
+//---------------------------------------------------
 // A peer has left the room
-Demo.Skyway.on('peerLeft', function (peerId, isSelf) {
+Demo.Skyway.on('peerLeft', function (peerId, peerInfo, isSelf) {
   if (!isSelf) {
-    delete Demo.API.peers[peerId];
+    delete Demo.Peers[peerId];
     $('#' + peerId).remove();
   }
 });
-
+//---------------------------------------------------
 // A peer's data {status} is updated
 Demo.Skyway.on('peerUpdated', function (peerId, peerInfo, isSelf) {
+  console.info(peerInfo);
   if (isSelf) {
-    Demo.API.user = peerInfo;
+    Demo.User = peerInfo;
   } else {
-    Demo.API.peers[peerId] = peerInfo;
+    Demo.Peers[peerId] = peerInfo;
     if (peerInfo.call.peerType === Demo.Skyway.PEER_TYPE.CLIENT) {
       $('#' + peerId).find('.status').html(peerInfo.userData.status);
     }
   }
 });
-
+//---------------------------------------------------
 // Demo custom events
-Demo.Skyway.on(Demo.EVENT.WATCHING, function (advertUrl) {
+Demo.Skyway.on(Demo.Events.watching, function (advertUrl) {
   $('#advertVideo')[0].src = advertUrl;
   var interval = setInterval(function(){
     if ($('#advertVideo')[0].readyState > 0) {
@@ -188,17 +185,17 @@ Demo.Skyway.on(Demo.EVENT.WATCHING, function (advertUrl) {
           clearInterval(advertDisplaySecs);
           $('#advertVideo')[0].volume = 1;
           $('#advertVideo')[0].loop = 'loop';
-          Demo.API.user.userData.status = Demo.EVENT.ON_HOLD;
-          Demo.Skyway.startPeerEvent(Demo.API.user.userData, {
-            name: Demo.EVENT.ON_HOLD
+          Demo.User.userData.status = Demo.Events.onhold;
+          Demo.Skyway.startPeerEvent(Demo.User.userData, {
+            name: Demo.Events.onhold
           });
         }
       }, 10);
     }
   }, 10);
 });
-
-Demo.Skyway.on(Demo.EVENT.ON_HOLD, function () {
+//---------------------------------------------------
+Demo.Skyway.on(Demo.Events.onhold, function () {
   $('.advertDisplay').html('Please hold on while we get the next available agent' +
     'to assist you. We apologise for the wait.')
 });

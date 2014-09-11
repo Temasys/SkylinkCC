@@ -1,4 +1,4 @@
-/*! skywaycc - v0.1.0 - 2014-08-21 */
+/*! skywaycc - v0.2.0 - 2014-09-11 */
 
 (function() {
   /**
@@ -35,7 +35,7 @@
      * @readOnly
      * @since 0.1.0
      */
-    this.VERSION = '0.1.0';
+    this.VERSION = '0.2.0';
     /**
      * State if User is in lobby room or not
      * @attribute _in_lobby
@@ -175,7 +175,7 @@
           };
           self._lobbyRoom = lobbyRoom || self._defaultLobbyRoom;
           self.joinRoom(self._lobbyRoom, {
-            user: userData,
+            userData: userData,
             audio: false,
             video: false
           });
@@ -489,7 +489,7 @@
    *   SkywayDemo.on('peerCallRequest', function (peerId, peerInfo, isSelf)) {
    *     if (!isSelf) {
    *       if (peerInfo.call.status === SkywayDemo.CALL_STATUS.START_CALL) {
-   *         SkywayDemo.startRequestCall(peerId, function (peerInfo) {
+   *         SkywayDemo.startRequestCall(peerId, function (userInfo, peerInfo) {
    *           SkywayDemo.joinRoom(peerInfo.call.targetRoom, {
    *             audio: true,
    *             video: true
@@ -499,16 +499,18 @@
    *     }
    *   });
    * @trigger peerCallRequest, peerLeft
-   * @since 0.1.0
+   * @since 0.2.0
    */
   SkywayCC.prototype.startRequestCall = function (targetPeerId, callback) {
     var self = this;
+    var peerInfo;
     var doLeaveRoom = function () {
+      var userInfo = self._user.info;
       self.leaveRoom();
       self._in_lobby = false;
-      self._temp.userCall = self._user.info.call;
-      self._temp.userData = self._user.info.userData;
-      callback(self._user.info, self._peerInformations[targetPeerId]);
+      self._temp.userCall = userInfo.call;
+      self._temp.userData = userInfo.userData;
+      callback(userInfo, peerInfo);
     };
     if (self._user.info.call.peerType === self.PEER_TYPE.AGENT) {
       this._handleCall(targetPeerId, {
@@ -516,11 +518,13 @@
         targetPeerId: targetPeerId,
         peerType: this.PEER_TYPE.AGENT
       }, function () {
+        peerInfo = self._peerInformations[targetPeerId];
         setTimeout(function () {
           doLeaveRoom();
         }, 3500);
       });
     } else {
+      peerInfo = self._peerInformations[targetPeerId];
       doLeaveRoom();
     }
   };

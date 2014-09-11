@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>source\skywaycc.js - skywaycc</title>
+    <title>source/skywaycc.js - skywaycc</title>
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:400,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
@@ -22,7 +22,7 @@
         </div>
         <div class="yui3-u-1-4 version">
             <span>
-                API Docs for: <a href="http://temasys.github.io">0.1.0</a>
+                API Docs for: <a href="http://temasys.github.io">0.2.0</a>
             </span>
         </div>
     </div>
@@ -86,7 +86,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: source\skywaycc.js</h1>
+                        <h1 class="file-heading">File: source/skywaycc.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -270,7 +270,7 @@
           };
           self._lobbyRoom = lobbyRoom || self._defaultLobbyRoom;
           self.joinRoom(self._lobbyRoom, {
-            user: userData,
+            userData: userData,
             audio: false,
             video: false
           });
@@ -584,7 +584,7 @@
    *   SkywayDemo.on(&#x27;peerCallRequest&#x27;, function (peerId, peerInfo, isSelf)) {
    *     if (!isSelf) {
    *       if (peerInfo.call.status === SkywayDemo.CALL_STATUS.START_CALL) {
-   *         SkywayDemo.startRequestCall(peerId, function (peerInfo) {
+   *         SkywayDemo.startRequestCall(peerId, function (userInfo, peerInfo) {
    *           SkywayDemo.joinRoom(peerInfo.call.targetRoom, {
    *             audio: true,
    *             video: true
@@ -594,16 +594,18 @@
    *     }
    *   });
    * @trigger peerCallRequest, peerLeft
-   * @since 0.1.0
+   * @since 0.2.0
    */
   SkywayCC.prototype.startRequestCall = function (targetPeerId, callback) {
     var self = this;
+    var peerInfo;
     var doLeaveRoom = function () {
+      var userInfo = self._user.info;
       self.leaveRoom();
       self._in_lobby = false;
-      self._temp.userCall = self._user.info.call;
-      self._temp.userData = self._user.info.userData;
-      callback(self._user.info, self._peerInformations[targetPeerId]);
+      self._temp.userCall = userInfo.call;
+      self._temp.userData = userInfo.userData;
+      callback(userInfo, peerInfo);
     };
     if (self._user.info.call.peerType === self.PEER_TYPE.AGENT) {
       this._handleCall(targetPeerId, {
@@ -611,11 +613,13 @@
         targetPeerId: targetPeerId,
         peerType: this.PEER_TYPE.AGENT
       }, function () {
+        peerInfo = self._peerInformations[targetPeerId];
         setTimeout(function () {
           doLeaveRoom();
         }, 3500);
       });
     } else {
+      peerInfo = self._peerInformations[targetPeerId];
       doLeaveRoom();
     }
   };

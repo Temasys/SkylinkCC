@@ -1,7 +1,7 @@
 {
   "name": "skywaycc",
   "description": "Implement Control Center functionalities with SkywayJS",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://www.temasys.com.sg/",
   "author": {
     "name": "Temasys Communications Pte. Ltd.",
@@ -23,8 +23,8 @@
   },
   "dependencies": {
     "socket.io-client": "1.0.6",
-    "adapterjs": "https://github.com/Temasys/AdapterJS/archive/0.0.2.tar.gz",
-    "skywayjs": "https://github.com/Temasys/SkywayJS/archive/0.3.1.tar.gz"
+    "adapterjs": "https://github.com/Temasys/AdapterJS/archive/0.9.1.tar.gz",
+    "skywayjs": "https://github.com/Temasys/SkywayJS/archive/0.5.0.tar.gz"
   },
   "devDependencies": {
     "connect": "2.14.3",
