@@ -1,20 +1,18 @@
-# SkywayCC
+# ![SkywayCC](http://temasys.github.io/resources/img/skywaycc.svg)
 
-> SkywayCC is an open-source client-side library for your web-browser that enables developers to create a Control Center environment.
-
-The latest complete version including [Socket.io](http://socket.io/), [AdapterJS](https://github.com/Temasys/AdapterJS) and [SkywayJS](https://github.com/Temasys/SkywayJS)
-- `//cdn.temasys.com.sg/skyway/skywayjs/0.3.x/skywaycc.complete.min.js`
-
-Library versions:
-- `//cdn.temasys.com.sg/skyway/skywaycc/0.1.0/skywaycc.min.js`
-- `//cdn.temasys.com.sg/skyway/skywaycc/0.1.0/skywaycc.debug.js`
+> SkywayCC is an open-source client-side library for your web-browser that enables any website to easily leverage the capabilities of WebRTC and its direct data streaming powers between agent and clients for audio/video conferencing, creating a control-center environment.
 
 You'll need a Temasys Developer Account and an API key to use this. [Get it here](https://developer.temasys.com.sg).
 
-- [Getting started](http://temasys.github.io/how-to/2014/08/08/Getting_started_with_WebRTC_and_SkywayJS/)
+SkywayCC is build on top of [SkywayJS](https://github.com/Temasys/SkywayJS) and works with our Temasys WebRTC Plugin even in Internet Explorer and Safari on Mac and PC.
+
+You will require to setup your own `config.js` file to place your API key. Check out `config-example.js` in the `demo/app/js` folder on how it should be set up.
+
+- [How SkywayJS works](http://temasys.github.io/how-to/2014/08/08/Getting_started_with_WebRTC_and_SkywayJS/)
 - [Introducing SkywayCC](http://temasys.atlassian.net/wiki/display/TPD/Introducing+SkywayCC)
-- [SkywayCC API Docs](http://cdn.temasys.com.sg/skyway/skywaycc/0.1.0/doc/classes/SkywayCC.html)
+- [Introducing SkywayJS](http://temasys.atlassian.net/wiki/display/TPD/Introducing+SkywayJS)
 - [SkywayJS API Docs](http://cdn.temasys.com.sg/skyway/skywayjs/0.3.x/doc/classes/Skyway.html)
+- [SkywayCC API Docs](http://cdn.temasys.com.sg/skyway/skywaycc/0.1.0/doc/classes/SkywayCC.html)
 - [Developer Console](https://developer.temasys.com.sg) - Get your API key
 
 
@@ -36,7 +34,6 @@ Please read how you can find help, contribute and support us advancing SkywayCC 
 - Run `npm test` to execute jshint and run the tests in your local Chrome (Mac). You can configure this in the `test.sh` file.
 - Run `grunt jshint` to run jshint on its own.
 - Run `grunt publish` to create production version in `publish` folder and generate the documentation in `doc` folder
-
 
 ## What's included?
 
