@@ -12641,7 +12641,7 @@ Skyway = Skylink;
     };
   }
   // Initialize SkylinkCC as Skyway and start
-  SkylinkCC.prototype = new Skyway();
+  SkylinkCC.prototype = new Skylink();
   this.SkylinkCC = SkylinkCC;
 
   /**
