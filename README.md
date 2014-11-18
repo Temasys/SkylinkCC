@@ -1,24 +1,24 @@
-# ![SkywayCC](http://temasys.github.io/resources/img/skywaycc.svg)
+# ![SkylinkCC](http://temasys.github.io/resources/img/SkylinkCC.svg)
 
-> SkywayCC is an open-source client-side library for your web-browser that enables any website to easily leverage the capabilities of WebRTC and its direct data streaming powers between agent and clients for audio/video conferencing, creating a control-center environment.
+> SkylinkCC is an open-source client-side library for your web-browser that enables any website to easily leverage the capabilities of WebRTC and its direct data streaming powers between agent and clients for audio/video conferencing, creating a control-center environment.
 
 You'll need a Temasys Developer Account and an API key to use this. [Get it here](https://developer.temasys.com.sg).
 
-SkywayCC is build on top of [SkywayJS](https://github.com/Temasys/SkywayJS) and works with our Temasys WebRTC Plugin even in Internet Explorer and Safari on Mac and PC.
+SkylinkCC is build on top of [SkylinkJS](https://github.com/Temasys/SkylinkJS) and works with our Temasys WebRTC Plugin even in Internet Explorer and Safari on Mac and PC.
 
 You will require to setup your own `config.js` file to place your API key. Check out `config-example.js` in the `demo/app/js` folder on how it should be set up.
 
-- [How SkywayJS works](http://temasys.github.io/how-to/2014/08/08/Getting_started_with_WebRTC_and_SkywayJS/)
-- [Introducing SkywayCC](http://temasys.atlassian.net/wiki/display/TPD/Introducing+SkywayCC)
-- [Introducing SkywayJS](http://temasys.atlassian.net/wiki/display/TPD/Introducing+SkywayJS)
-- [SkywayJS API Docs](http://cdn.temasys.com.sg/skyway/skywayjs/0.3.x/doc/classes/Skyway.html)
-- [SkywayCC API Docs](http://cdn.temasys.com.sg/skyway/skywaycc/0.1.0/doc/classes/SkywayCC.html)
+- [How SkylinkJS works](http://temasys.github.io/how-to/2014/08/08/Getting_started_with_WebRTC_and_SkylinkJS/)
+- [Introducing SkylinkCC](http://temasys.atlassian.net/wiki/display/TPD/Introducing+SkylinkCC)
+- [Introducing SkylinkJS](http://temasys.atlassian.net/wiki/display/TPD/Introducing+SkylinkJS)
+- [SkylinkJS API Docs](http://cdn.temasys.com.sg/skyway/SkylinkJS/0.3.x/doc/classes/Skyway.html)
+- [SkylinkCC API Docs](http://cdn.temasys.com.sg/skyway/SkylinkCC/0.1.0/doc/classes/SkylinkCC.html)
 - [Developer Console](https://developer.temasys.com.sg) - Get your API key
 
 
 #### Need help or want something changed?
 
-Please read how you can find help, contribute and support us advancing SkywayCC on [our Github Page](http://temasys.github.io/support).
+Please read how you can find help, contribute and support us advancing SkylinkCC on [our Github Page](http://temasys.github.io/support).
 
 
 ## How to setup this project
@@ -55,7 +55,7 @@ The production version of the library and a minified copy of it
 
 #### source
 
-The skywaycc.js library development files
+The SkylinkCC.js library development files
 
 #### tests
 
