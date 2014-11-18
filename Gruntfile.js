@@ -30,19 +30,24 @@ module.exports = function (grunt) {
 					'<%= grunt.template.today("yyyy-mm-dd") %> */\n\n'
 			},
 			production: {
-				src: [
-					'<%= source %>/skywaycc.js'
-				],
-				dest: '<%= production %>/skywaycc.debug.js'
+				files: {
+	        '<%= production %>/skylinkcc.debug.js': ['<%= source %>/skylinkcc.js'],
+	        '<%= production %>/skywaycc.debug.js': ['<%= source %>/skylinkcc.js']
+	      }
 			},
 			complete: {
-				src: [
-					'node_modules/socket.io-client/socket.io.js',
-					'node_modules/adapterjs/source/adapter.js',
-					'node_modules/skywayjs/source/skyway.js',
-					'<%= source %>/skywaycc.js'
-				],
-				dest: '<%= production %>/skywaycc.complete.js'
+				files: {
+					'<%= production %>/skylinkcc.complete.js': [
+	        	'node_modules/socket.io-client/socket.io.js',
+						'node_modules/adapterjs/source/adapter.js',
+						'<%= production %>/skylinkcc.debug.js'
+					],
+					'<%= production %>/skywaycc.complete.js': [
+	        	'node_modules/socket.io-client/socket.io.js',
+						'node_modules/adapterjs/source/adapter.js',
+						'<%= production %>/skywaycc.debug.js'
+					]
+		    }
 			}
 		},
 
@@ -58,8 +63,18 @@ module.exports = function (grunt) {
 			},
 			production_min: {
 				files: {
-					'<%= production %>/skywaycc.min.js': ['<%= production %>/skywaycc.debug.js'],
-					'<%= production %>/skywaycc.complete.min.js': ['<%= production %>/skywaycc.complete.js']
+					'<%= production %>/skylinkcc.min.js': [
+						'<%= production %>/skylinkcc.debug.js'
+					],
+					'<%= production %>/skylinkcc.complete.min.js': [
+						'<%= production %>/skylinkcc.complete.js'
+					],
+					'<%= production %>/skywaycc.min.js': [
+						'<%= production %>/skylinkcc.debug.js'
+					],
+					'<%= production %>/skywaycc.complete.min.js': [
+						'<%= production %>/skylinkcc.complete.js'
+					]
 				}
 			}
 		},
@@ -92,7 +107,7 @@ module.exports = function (grunt) {
 					}
 				}, grunt.file.readJSON('.jshintrc')),
 				src: [
-					'<%= source %>/skywaycc.js'
+					'<%= source %>/skylinkcc.js'
 				]
 			}
 		},

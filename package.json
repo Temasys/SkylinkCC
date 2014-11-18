@@ -1,7 +1,7 @@
 {
-  "name": "skywaycc",
-  "description": "Implement Control Center functionalities with SkywayJS",
-  "version": "0.2.0",
+  "name": "skylinkcc",
+  "description": "Implement Control Center functionalities with SkylinkJS",
+  "version": "0.3.0",
   "homepage": "https://www.temasys.com.sg/",
   "author": {
     "name": "Temasys Communications Pte. Ltd.",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:TemasysCommunications/SkyWayJS.git"
+    "url": "git@github.com:Temasys/SkywayCC.git"
   },
   "licenses": [
     {
@@ -24,7 +24,7 @@
   "dependencies": {
     "socket.io-client": "1.0.6",
     "adapterjs": "https://github.com/Temasys/AdapterJS/archive/0.9.1.tar.gz",
-    "skywayjs": "https://github.com/Temasys/SkywayJS/archive/0.5.0.tar.gz"
+    "skywayjs": "https://github.com/Temasys/SkylinkJS/archive/0.5.0.tar.gz"
   },
   "devDependencies": {
     "connect": "2.14.3",
@@ -38,41 +38,6 @@
     "grunt-tape": "0.0.2",
     "tape": "2.12.0",
     "yuidocjs": "0.3.49"
-  },
-  "testling": {
-    "files": "tests/*.js",
-    "browsers": [
-      "ie/9",
-      "chrome/23.0",
-      "chrome/24.0",
-      "chrome/25.0",
-      "chrome/26.0",
-      "chrome/27.0",
-      "chrome/28.0",
-      "chrome/29.0",
-      "chrome/30.0",
-      "chrome/31.0",
-      "chrome/32.0",
-      "chrome/canary",
-      "firefox/18.0",
-      "firefox/19.0",
-      "firefox/20.0",
-      "firefox/21.0",
-      "firefox/22.0",
-      "firefox/23.0",
-      "firefox/24.0",
-      "firefox/25.0",
-      "firefox/26.0",
-      "firefox/27.0",
-      "firefox/nightly",
-      "opera/18.0",
-      "opera/19.0",
-      "opera/next",
-      "safari/latest",
-      "iphone/latest",
-      "ipad/latest",
-      "android-browser/latest"
-    ]
   },
   "engines": {
     "node": "0.10.26",

@@ -1,61 +1,61 @@
 {
     "project": {
-        "name": "skywaycc",
-        "description": "Implement Control Center functionalities with SkywayJS",
-        "version": "0.2.0",
+        "name": "skylinkcc",
+        "description": "Implement Control Center functionalities with SkylinkJS",
+        "version": "0.3.0",
         "url": "https://www.temasys.com.sg/"
     },
     "files": {
-        "source/skywaycc.js": {
-            "name": "source/skywaycc.js",
+        "source/skylinkcc.js": {
+            "name": "source/skylinkcc.js",
             "modules": {},
             "classes": {
-                "SkywayCC": 1
+                "SkylinkCC": 1
             },
             "fors": {
-                "SkywayCC": 1
+                "SkylinkCC": 1
             },
             "namespaces": {}
         }
     },
     "modules": {},
     "classes": {
-        "SkywayCC": {
-            "name": "SkywayCC",
-            "shortname": "SkywayCC",
+        "SkylinkCC": {
+            "name": "SkylinkCC",
+            "shortname": "SkylinkCC",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "file": "source/skywaycc.js",
+            "file": "source/skylinkcc.js",
             "line": 7,
-            "extends": "Skyway",
+            "extends": "Skylink",
             "requires": [
-                "Skyway"
+                "Skylink"
             ],
-            "description": "SkywayCC is a implementation from Skyway to create a control center like\nuse-case. Things to take note are:\n- Skyway.init() is required to be called before\n  {{#crossLink \"SkywayCC/connect:method\"}}connect(){{/crossLink}}\n- To disconnect users from the lobby or the room, call Skyway.leaveRoom()\n  instead.\n- If there's no lobbyRoom specified, 'MAIN' is the main lobby\n- Check out the rest of the other functionalities in the\n  [Skyway documentation](http://cdn.temasys.com.sg/skyway/skywayjs\n  /0.3.1/doc/classes/Skyway.html).",
+            "description": "SkylinkCC is a implementation from Skyway to create a control center like\nuse-case. Things to take note are:\n- Skyway.init() is required to be called before\n  {{#crossLink \"SkylinkCC/connect:method\"}}connect(){{/crossLink}}\n- To disconnect users from the lobby or the room, call Skyway.leaveRoom()\n  instead.\n- If there's no lobbyRoom specified, 'MAIN' is the main lobby\n- Check out the rest of the other functionalities in the\n  [Skyway documentation](http://cdn.temasys.com.sg/skyway/skywayjs\n  /0.3.1/doc/classes/Skyway.html).",
             "is_constructor": 1,
             "example": [
-                "\n  // Getting started on how to use Skyway\n  // Note that init() is still required to be called as init() is to fetch\n  // server connection information.\n  var SkywayDemo = new SkywayCC();\n  SkywayDemo.init({\n    defaultRoom: 'default',\n    apiKey: 'apiKey'\n  });"
+                "\n  // Getting started on how to use Skyway\n  // Note that init() is still required to be called as init() is to fetch\n  // server connection information.\n  var SkylinkDemo = new SkylinkCC();\n  SkylinkDemo.init({\n    defaultRoom: 'default',\n    apiKey: 'apiKey'\n  });"
             ]
         }
     },
     "classitems": [
         {
-            "file": "source/skywaycc.js",
+            "file": "source/skylinkcc.js",
             "line": 34,
-            "description": "Version of SkywayCC",
+            "description": "Version of SkylinkCC",
             "itemtype": "attribute",
             "name": "VERSION",
             "type": "String",
             "readonly": "",
             "since": "0.1.0",
-            "class": "SkywayCC"
+            "class": "SkylinkCC"
         },
         {
-            "file": "source/skywaycc.js",
-            "line": 42,
+            "file": "source/skylinkcc.js",
+            "line": 43,
             "description": "State if User is in lobby room or not",
             "itemtype": "attribute",
             "name": "_in_lobby",
@@ -64,11 +64,11 @@
             "tagname": "",
             "required": 1,
             "since": "0.1.0",
-            "class": "SkywayCC"
+            "class": "SkylinkCC"
         },
         {
-            "file": "source/skywaycc.js",
-            "line": 51,
+            "file": "source/skylinkcc.js",
+            "line": 53,
             "description": "The default lobby room.",
             "itemtype": "attribute",
             "name": "_defaultLobbyRoom",
@@ -77,11 +77,11 @@
             "tagname": "",
             "required": 1,
             "since": "0.1.0",
-            "class": "SkywayCC"
+            "class": "SkylinkCC"
         },
         {
-            "file": "source/skywaycc.js",
-            "line": 60,
+            "file": "source/skylinkcc.js",
+            "line": 63,
             "description": "The lobby room",
             "itemtype": "attribute",
             "name": "_lobbyRoom",
@@ -91,11 +91,11 @@
             "tagname": "",
             "required": 1,
             "since": "0.1.0",
-            "class": "SkywayCC"
+            "class": "SkylinkCC"
         },
         {
-            "file": "source/skywaycc.js",
-            "line": 70,
+            "file": "source/skylinkcc.js",
+            "line": 74,
             "description": "The ready state of the peer's call if they are ready to join the room.",
             "itemtype": "attribute",
             "name": "CALL_READY_STATE",
@@ -134,11 +134,11 @@
             ],
             "readonly": "",
             "since": "0.1.0",
-            "class": "SkywayCC"
+            "class": "SkylinkCC"
         },
         {
-            "file": "source/skywaycc.js",
-            "line": 90,
+            "file": "source/skylinkcc.js",
+            "line": 95,
             "description": "User object",
             "itemtype": "attribute",
             "name": "_user",
@@ -206,7 +206,7 @@
                                 },
                                 {
                                     "name": "video.resolution",
-                                    "description": "[Rel: SkywayCC.VIDEO_RESOLUTION]",
+                                    "description": "[Rel: SkylinkCC.VIDEO_RESOLUTION]",
                                     "type": "Bolean|JSON"
                                 },
                                 {
@@ -255,7 +255,7 @@
                             "props": [
                                 {
                                     "name": "status",
-                                    "description": "The current ready state of the user's call.\n  [Rel: SkywayCC.CALL_READY_STATE]",
+                                    "description": "The current ready state of the user's call.\n  [Rel: SkylinkCC.CALL_READY_STATE]",
                                     "type": "Integer"
                                 },
                                 {
@@ -265,7 +265,7 @@
                                 },
                                 {
                                     "name": "peerType",
-                                    "description": "Peer type [Rel: SkywayCC.PEER_TYPE]",
+                                    "description": "Peer type [Rel: SkylinkCC.PEER_TYPE]",
                                     "type": "String"
                                 },
                                 {
@@ -282,11 +282,11 @@
             "access": "private",
             "tagname": "",
             "since": "0.1.0",
-            "class": "SkywayCC"
+            "class": "SkylinkCC"
         },
         {
-            "file": "source/skywaycc.js",
-            "line": 126,
+            "file": "source/skylinkcc.js",
+            "line": 132,
             "description": "Object to store temporary information",
             "itemtype": "attribute",
             "name": "_temp",
@@ -294,11 +294,11 @@
             "access": "private",
             "tagname": "",
             "since": "0.1.0",
-            "class": "SkywayCC"
+            "class": "SkylinkCC"
         },
         {
-            "file": "source/skywaycc.js",
-            "line": 134,
+            "file": "source/skylinkcc.js",
+            "line": 141,
             "description": "If peer is agent or customer. Types are:",
             "itemtype": "attribute",
             "name": "PEER_TYPE",
@@ -317,11 +317,11 @@
             ],
             "readonly": "",
             "since": "0.1.0",
-            "class": "SkywayCC"
+            "class": "SkylinkCC"
         },
         {
-            "file": "source/skywaycc.js",
-            "line": 147,
+            "file": "source/skylinkcc.js",
+            "line": 155,
             "description": "Connect user to the main lobby.\n- Please call this only after calling Skyway.init().\n- To disconect from the lobby, please call Skyway.leaveRoom().",
             "itemtype": "method",
             "name": "connect",
@@ -338,21 +338,21 @@
                 },
                 {
                     "name": "peerType",
-                    "description": "Deprecated. The peer type [Rel: SkywayCC.PEER_TYPE].\n  This would be removed from the specs once agent and client is identified\n  from the request url.",
+                    "description": "Deprecated. The peer type [Rel: SkylinkCC.PEER_TYPE].\n  This would be removed from the specs once agent and client is identified\n  from the request url.",
                     "type": "String"
                 }
             ],
             "example": [
-                "\n  SkywayDemo.connect('main_lobby', {\n    'displayName': 'Agent Bob',\n    'timeStamp': (new Date()).toISOString,\n    'status': CALL_CENTER.EVENT.STARTING,\n    'UUID': 'XXX-XXX-XXXX'\n  }, SkywayDemo.PEER_TYPE.AGENT);"
+                "\n  SkylinkDemo.connect('main_lobby', {\n    'displayName': 'Agent Bob',\n    'timeStamp': (new Date()).toISOString,\n    'status': CALL_CENTER.EVENT.STARTING,\n    'UUID': 'XXX-XXX-XXXX'\n  }, SkylinkDemo.PEER_TYPE.AGENT);"
             ],
             "trigger": "peerJoined",
             "required": 1,
             "since": "0.1.0",
-            "class": "SkywayCC"
+            "class": "SkylinkCC"
         },
         {
-            "file": "source/skywaycc.js",
-            "line": 193,
+            "file": "source/skylinkcc.js",
+            "line": 202,
             "description": "We just joined a room! Let's send a nice message to all to let them know I'm in.",
             "itemtype": "method",
             "name": "_inRoomHandler",
@@ -394,11 +394,11 @@
             "access": "private",
             "tagname": "",
             "since": "0.1.0",
-            "class": "SkywayCC"
+            "class": "SkylinkCC"
         },
         {
-            "file": "source/skywaycc.js",
-            "line": 250,
+            "file": "source/skylinkcc.js",
+            "line": 259,
             "description": "Throw an event with the received private message",
             "itemtype": "method",
             "name": "_privateMessageHandler",
@@ -445,11 +445,11 @@
             "access": "private",
             "tagname": "",
             "since": "0.1.0",
-            "class": "SkywayCC"
+            "class": "SkylinkCC"
         },
         {
-            "file": "source/skywaycc.js",
-            "line": 274,
+            "file": "source/skylinkcc.js",
+            "line": 283,
             "description": "Throw an event with the received private message",
             "itemtype": "method",
             "name": "_publicMessageHandler",
@@ -496,11 +496,11 @@
             "access": "private",
             "tagname": "",
             "since": "0.1.0",
-            "class": "SkywayCC"
+            "class": "SkylinkCC"
         },
         {
-            "file": "source/skywaycc.js",
-            "line": 298,
+            "file": "source/skylinkcc.js",
+            "line": 307,
             "description": "Handles all call status event changes",
             "itemtype": "method",
             "name": "_callStatusHandler",
@@ -557,11 +557,11 @@
             "access": "private",
             "tagname": "",
             "since": "0.1.0",
-            "class": "SkywayCC"
+            "class": "SkylinkCC"
         },
         {
-            "file": "source/skywaycc.js",
-            "line": 339,
+            "file": "source/skylinkcc.js",
+            "line": 348,
             "description": "Trigger a event after updating userData.",
             "itemtype": "method",
             "name": "startPeerEvent",
@@ -590,15 +590,15 @@
                 }
             ],
             "example": [
-                "\n  var userData = SkywayDemo.getUserData().userData;\n  userData.status = 'newEvent';\n  SkywayDemo.startPeerEvent(userData, {\n    name: 'newEvent',\n    params: {\n      'startAdvert': true,\n      'UUID': 'XXXX-XXX-XXX'\n    }\n  });\n  SkywayDemo.on('newEvent', function (params) {\n    // ....\n  });"
+                "\n  var userData = SkylinkDemo.getUserData().userData;\n  userData.status = 'newEvent';\n  SkylinkDemo.startPeerEvent(userData, {\n    name: 'newEvent',\n    params: {\n      'startAdvert': true,\n      'UUID': 'XXXX-XXX-XXX'\n    }\n  });\n  SkylinkDemo.on('newEvent', function (params) {\n    // ....\n  });"
             ],
             "trigger": "[customEvent]",
             "since": "0.1.0",
-            "class": "SkywayCC"
+            "class": "SkylinkCC"
         },
         {
-            "file": "source/skywaycc.js",
-            "line": 381,
+            "file": "source/skylinkcc.js",
+            "line": 390,
             "description": "Handles all call states.",
             "itemtype": "method",
             "name": "_handleCall",
@@ -615,12 +615,12 @@
                     "props": [
                         {
                             "name": "status",
-                            "description": "Peer call status [Rel: SkywayCC.CALL_STATUS]",
+                            "description": "Peer call status [Rel: SkylinkCC.CALL_STATUS]",
                             "type": "JSON"
                         },
                         {
                             "name": "peerType",
-                            "description": "Peer user type [Rel: SkywayCC.PEER_TYPE]",
+                            "description": "Peer user type [Rel: SkylinkCC.PEER_TYPE]",
                             "type": "Boolean"
                         },
                         {
@@ -645,11 +645,11 @@
             "access": "private",
             "tagname": "",
             "since": "0.1.0",
-            "class": "SkywayCC"
+            "class": "SkylinkCC"
         },
         {
-            "file": "source/skywaycc.js",
-            "line": 431,
+            "file": "source/skylinkcc.js",
+            "line": 440,
             "description": "Step 1: Agent requests to start the call to client",
             "itemtype": "method",
             "name": "agentRequestCall",
@@ -666,15 +666,15 @@
                 }
             ],
             "example": [
-                "\n  // Example 1: Request call\n  SkywayDemo.agentRequestCall(peerId);\n\n  // Example 2: Request call with a specific room\n  SkywayDemo.agentRequestCall(peerId, room);"
+                "\n  // Example 1: Request call\n  SkylinkDemo.agentRequestCall(peerId);\n\n  // Example 2: Request call with a specific room\n  SkylinkDemo.agentRequestCall(peerId, room);"
             ],
             "trigger": "peerCallRequest",
             "since": "0.1.0",
-            "class": "SkywayCC"
+            "class": "SkylinkCC"
         },
         {
-            "file": "source/skywaycc.js",
-            "line": 454,
+            "file": "source/skylinkcc.js",
+            "line": 463,
             "description": "Step 2: Client to accept or reject the call.",
             "itemtype": "method",
             "name": "acceptRequestCall",
@@ -691,15 +691,15 @@
                 }
             ],
             "example": [
-                "\n  SkywayDemo.on('peerCallRequest', function (peerId, peerInfo, isSelf)) {\n    if (!isSelf) {\n      if (peerInfo.call.status === SkywayDemo.CALL_STATUS.REQUEST_CALL) {\n        var result = confirm('Do you want to accept the call?');\n        SkywayDemo.acceptRequestCall(peerId, result);\n      }\n    }\n  });"
+                "\n  SkylinkDemo.on('peerCallRequest', function (peerId, peerInfo, isSelf)) {\n    if (!isSelf) {\n      if (peerInfo.call.status === SkylinkDemo.CALL_STATUS.REQUEST_CALL) {\n        var result = confirm('Do you want to accept the call?');\n        SkylinkDemo.acceptRequestCall(peerId, result);\n      }\n    }\n  });"
             ],
             "trigger": "peerCallRequest",
             "since": "0.1.0",
-            "class": "SkywayCC"
+            "class": "SkylinkCC"
         },
         {
-            "file": "source/skywaycc.js",
-            "line": 481,
+            "file": "source/skylinkcc.js",
+            "line": 490,
             "description": "Step 3: Start the call. You may call method\n- \"peerLeft\" would be triggered because user left the lobby room\n- Call Skyway.joinRoom() to start the call.\nRequest a call for agent",
             "itemtype": "method",
             "name": "startRequestCall",
@@ -720,15 +720,15 @@
                 "type": "JSON"
             },
             "example": [
-                "\n  SkywayDemo.on('peerCallRequest', function (peerId, peerInfo, isSelf)) {\n    if (!isSelf) {\n      if (peerInfo.call.status === SkywayDemo.CALL_STATUS.START_CALL) {\n        SkywayDemo.startRequestCall(peerId, function (userInfo, peerInfo) {\n          SkywayDemo.joinRoom(peerInfo.call.targetRoom, {\n            audio: true,\n            video: true\n          });\n        });\n      }\n    }\n  });"
+                "\n  SkylinkDemo.on('peerCallRequest', function (peerId, peerInfo, isSelf)) {\n    if (!isSelf) {\n      if (peerInfo.call.status === SkylinkDemo.CALL_STATUS.START_CALL) {\n        SkylinkDemo.startRequestCall(peerId, function (userInfo, peerInfo) {\n          SkylinkDemo.joinRoom(peerInfo.call.targetRoom, {\n            audio: true,\n            video: true\n          });\n        });\n      }\n    }\n  });"
             ],
             "trigger": "peerCallRequest, peerLeft",
             "since": "0.2.0",
-            "class": "SkywayCC"
+            "class": "SkylinkCC"
         },
         {
-            "file": "source/skywaycc.js",
-            "line": 536,
+            "file": "source/skylinkcc.js",
+            "line": 545,
             "description": "Event fired when a peer call request has changed.",
             "itemtype": "event",
             "name": "peerCallRequest",
@@ -814,12 +814,12 @@
                             "props": [
                                 {
                                     "name": "status",
-                                    "description": "Peer call status [Rel: SkywayCC.CALL_STATUS]",
+                                    "description": "Peer call status [Rel: SkylinkCC.CALL_STATUS]",
                                     "type": "Integer"
                                 },
                                 {
                                     "name": "peerType",
-                                    "description": "Peer user type [Rel: SkywayCC.PEER_TYPE]",
+                                    "description": "Peer user type [Rel: SkylinkCC.PEER_TYPE]",
                                     "type": "String"
                                 },
                                 {
@@ -843,53 +843,53 @@
                 }
             ],
             "since": "0.1.0",
-            "class": "SkywayCC"
+            "class": "SkylinkCC"
         }
     ],
     "warnings": [
         {
             "message": "param name missing: {Intger}",
-            "line": " source/skywaycc.js:70"
+            "line": " source/skylinkcc.js:74"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source/skywaycc.js:147"
+            "line": " source/skylinkcc.js:155"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source/skywaycc.js:193"
+            "line": " source/skylinkcc.js:202"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source/skywaycc.js:250"
+            "line": " source/skylinkcc.js:259"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source/skywaycc.js:274"
+            "line": " source/skylinkcc.js:283"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source/skywaycc.js:298"
+            "line": " source/skylinkcc.js:307"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source/skywaycc.js:339"
+            "line": " source/skylinkcc.js:348"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source/skywaycc.js:381"
+            "line": " source/skylinkcc.js:390"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source/skywaycc.js:431"
+            "line": " source/skylinkcc.js:440"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source/skywaycc.js:454"
+            "line": " source/skylinkcc.js:463"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source/skywaycc.js:481"
+            "line": " source/skylinkcc.js:490"
         }
     ]
 }

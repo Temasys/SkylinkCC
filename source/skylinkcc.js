@@ -1,41 +1,42 @@
 /**
- * @class SkywayCC
- * @extends Skyway
- * @requires Skyway
+ * @class SkylinkCC
+ * @extends Skylink
+ * @requires Skylink
  */
 (function() {
   /**
-   * SkywayCC is a implementation from Skyway to create a control center like
+   * SkylinkCC is a implementation from Skyway to create a control center like
    * use-case. Things to take note are:
    * - Skyway.init() is required to be called before
-   *   {{#crossLink "SkywayCC/connect:method"}}connect(){{/crossLink}}
+   *   {{#crossLink "SkylinkCC/connect:method"}}connect(){{/crossLink}}
    * - To disconnect users from the lobby or the room, call Skyway.leaveRoom()
    *   instead.
    * - If there's no lobbyRoom specified, 'MAIN' is the main lobby
    * - Check out the rest of the other functionalities in the
    *   [Skyway documentation](http://cdn.temasys.com.sg/skyway/skywayjs
    *   /0.3.1/doc/classes/Skyway.html).
-   * @class SkywayCC
+   * @class SkylinkCC
    * @constructor
    * @example
    *   // Getting started on how to use Skyway
    *   // Note that init() is still required to be called as init() is to fetch
    *   // server connection information.
-   *   var SkywayDemo = new SkywayCC();
-   *   SkywayDemo.init({
+   *   var SkylinkDemo = new SkylinkCC();
+   *   SkylinkDemo.init({
    *     defaultRoom: 'default',
    *     apiKey: 'apiKey'
    *   });
    */
-  function SkywayCC() {
-    if (!Skyway) {
-      console.error('API - Skyway is not loaded. Please load Skyway first before SkywayCC.');
+  function SkylinkCC() {
+    if (!Skylink) {
+      console.error('API - Skylink is not loaded. Please load Skylink first before SkylinkCC.');
     }
     /**
-     * Version of SkywayCC
+     * Version of SkylinkCC
      * @attribute VERSION
      * @type String
      * @readOnly
+     * @for SkylinkCC
      * @since 0.1.0
      */
     this.VERSION = '@@version';
@@ -45,6 +46,7 @@
      * @type Boolean
      * @private
      * @required
+     * @for SkylinkCC
      * @since 0.1.0
      */
     this._in_lobby = false;
@@ -54,6 +56,7 @@
      * @type String
      * @private
      * @required
+     * @for SkylinkCC
      * @since 0.1.0
      */
     this._defaultLobbyRoom = 'MAIN';
@@ -64,6 +67,7 @@
      * @default _defaultLobbyRoom
      * @private
      * @required
+     * @for SkylinkCC
      * @since 0.1.0
      */
     this._lobbyRoom = false;
@@ -78,6 +82,7 @@
      * @param {Integer} START_CALL    Step 4. Agent and Client is ready to start the call.
      * @param {Intger}
      * @readOnly
+     * @for SkylinkCC
      * @since 0.1.0
      */
     this.CALL_READY_STATE = {
@@ -103,7 +108,7 @@
      * @param {Boolean|JSON} info.settings.audio
      * @param {Boolean} info.settings.audio.stereo
      * @param {Boolean|JSON} info.settings.video
-     * @param {Bolean|JSON} info.settings.video.resolution [Rel: SkywayCC.VIDEO_RESOLUTION]
+     * @param {Bolean|JSON} info.settings.video.resolution [Rel: SkylinkCC.VIDEO_RESOLUTION]
      * @param {Integer} info.settings.video.resolution.width
      * @param {Integer} info.settings.video.resolution.height
      * @param {Integer} info.settings.video.frameRate
@@ -113,13 +118,14 @@
      * @param {String|JSON} info.userData Peer custom data
      * @param {JSON} info.call Peer call status object.
      * @param {Integer} info.call.status The current ready state of the user's call.
-     *   [Rel: SkywayCC.CALL_READY_STATE]
+     *   [Rel: SkylinkCC.CALL_READY_STATE]
      * @param {String} info.call.targetPeerId PeerId the call to direct to.
-     * @param {String} info.call.peerType Peer type [Rel: SkywayCC.PEER_TYPE]
+     * @param {String} info.call.peerType Peer type [Rel: SkylinkCC.PEER_TYPE]
      * @param {String} info.call.targetRoom The targeted Room to join. Default is
      *   info.call.targetPeerId if not specified.
      * @required
      * @private
+     * @for SkylinkCC
      * @since 0.1.0
      */
     this._user = null;
@@ -128,6 +134,7 @@
      * @attribute _temp
      * @type Array
      * @private
+     * @for SkylinkCC
      * @since 0.1.0
      */
     this._temp = [];
@@ -138,6 +145,7 @@
      * @param {String} CUSTOMER  User is customer
      * @param {String} AGENT     User is agent
      * @readOnly
+     * @for SkylinkCC
      * @since 0.1.0
      */
     this.PEER_TYPE = {
@@ -151,19 +159,20 @@
      * @method connect
      * @param {String} lobbyRoom The lobby all peers connect to before the call starts.
      * @param {JSON|String} userData The user custom data.
-     * @param {String} peerType Deprecated. The peer type [Rel: SkywayCC.PEER_TYPE].
+     * @param {String} peerType Deprecated. The peer type [Rel: SkylinkCC.PEER_TYPE].
      *   This would be removed from the specs once agent and client is identified
      *   from the request url.
      * @example
-     *   SkywayDemo.connect('main_lobby', {
+     *   SkylinkDemo.connect('main_lobby', {
      *     'displayName': 'Agent Bob',
      *     'timeStamp': (new Date()).toISOString,
      *     'status': CALL_CENTER.EVENT.STARTING,
      *     'UUID': 'XXX-XXX-XXXX'
-     *   }, SkywayDemo.PEER_TYPE.AGENT);
+     *   }, SkylinkDemo.PEER_TYPE.AGENT);
      * @trigger peerJoined
-     * @for SkywayCC
+     * @for SkylinkCC
      * @required
+     * @for SkylinkCC
      * @since 0.1.0
      */
     this.connect = function (lobbyRoom, userData, peerType) {
@@ -186,9 +195,9 @@
       });
     };
   }
-  // Initialize SkywayCC as Skyway and start
-  SkywayCC.prototype = new Skyway();
-  this.SkywayCC = SkywayCC;
+  // Initialize SkylinkCC as Skyway and start
+  SkylinkCC.prototype = new Skyway();
+  this.SkylinkCC = SkylinkCC;
 
   /**
    * We just joined a room! Let's send a nice message to all to let them know I'm in.
@@ -204,7 +213,7 @@
    * @private
    * @since 0.1.0
    */
-  SkywayCC.prototype._inRoomHandler = function(message) {
+  SkylinkCC.prototype._inRoomHandler = function(message) {
     var self = this;
     console.log('API - We\'re in the room! Chat functionalities are now available.');
     console.log('API - We\'ve been given the following PC Constraint by the sig server: ');
@@ -262,7 +271,7 @@
    * @private
    * @since 0.1.0
    */
-  SkywayCC.prototype._privateMessageHandler = function(message) {
+  SkylinkCC.prototype._privateMessageHandler = function(message) {
     var targetMid = message.mid;
     if (message.callStatus) {
       this._callStatusHandler(targetMid, message, true);
@@ -286,7 +295,7 @@
    * @private
    * @since 0.1.0
    */
-  SkywayCC.prototype._publicMessageHandler = function(message) {
+  SkylinkCC.prototype._publicMessageHandler = function(message) {
     var targetMid = message.mid;
     if (message.callStatus) {
       this._callStatusHandler(targetMid, message, false);
@@ -313,7 +322,7 @@
    * @private
    * @since 0.1.0
    */
-  SkywayCC.prototype._callStatusHandler = function(targetMid, message, isPrivate) {
+  SkylinkCC.prototype._callStatusHandler = function(targetMid, message, isPrivate) {
     var call = message.data;
     var checkPrivate = (call.status >= this.CALL_READY_STATE.REQUEST_CALL) ?
       (call.targetPeerId === this._user.sid) : true;
@@ -345,22 +354,22 @@
    * @param {String} event.name The event to be trigged.
    * @param {JSON|String|Array} event.params The event params.
    * @example
-   *   var userData = SkywayDemo.getUserData().userData;
+   *   var userData = SkylinkDemo.getUserData().userData;
    *   userData.status = 'newEvent';
-   *   SkywayDemo.startPeerEvent(userData, {
+   *   SkylinkDemo.startPeerEvent(userData, {
    *     name: 'newEvent',
    *     params: {
    *       'startAdvert': true,
    *       'UUID': 'XXXX-XXX-XXX'
    *     }
    *   });
-   *   SkywayDemo.on('newEvent', function (params) {
+   *   SkylinkDemo.on('newEvent', function (params) {
    *     // ....
    *   });
    * @trigger [customEvent]
    * @since 0.1.0
    */
-  SkywayCC.prototype.startPeerEvent = function (userData, event) {
+  SkylinkCC.prototype.startPeerEvent = function (userData, event) {
     var self = this;
     for (var e in this._events) {
       if (this._events[e] === event.name) {
@@ -383,8 +392,8 @@
    * @method _handleCall
    * @param {String} peerId PeerId of the peer to send request to.
    * @param {JSON} options Peer call status object.
-   * @param {JSON} options.status Peer call status [Rel: SkywayCC.CALL_STATUS]
-   * @param {Boolean} options.peerType Peer user type [Rel: SkywayCC.PEER_TYPE]
+   * @param {JSON} options.status Peer call status [Rel: SkylinkCC.CALL_STATUS]
+   * @param {Boolean} options.peerType Peer user type [Rel: SkylinkCC.PEER_TYPE]
    * @param {String} options.targetPeerId PeerId of the peer the call request
    *   is directed to.
    * @param {String} options.targetRoom Room that the peer requests to join.
@@ -393,7 +402,7 @@
    * @private
    * @since 0.1.0
    */
-  SkywayCC.prototype._handleCall = function (peerId, options, callback) {
+  SkylinkCC.prototype._handleCall = function (peerId, options, callback) {
     if (!this._user) {
       console.error('API - "_user" object is not loaded yet. Check readyState.');
       return;
@@ -435,14 +444,14 @@
    * @param {String} room Room to ask client to join in
    * @example
    *   // Example 1: Request call
-   *   SkywayDemo.agentRequestCall(peerId);
+   *   SkylinkDemo.agentRequestCall(peerId);
    *
    *   // Example 2: Request call with a specific room
-   *   SkywayDemo.agentRequestCall(peerId, room);
+   *   SkylinkDemo.agentRequestCall(peerId, room);
    * @trigger peerCallRequest
    * @since 0.1.0
    */
-  SkywayCC.prototype.agentRequestCall = function (clientPeerId, room) {
+  SkylinkCC.prototype.agentRequestCall = function (clientPeerId, room) {
     this._handleCall(clientPeerId, {
       status: this.CALL_READY_STATE.REQUEST_CALL,
       targetPeerId: clientPeerId,
@@ -457,18 +466,18 @@
    * @param {String} agentPeerId PeerId of the agent.
    * @param {Boolean} accept If client accepts agent request or not.
    * @example
-   *   SkywayDemo.on('peerCallRequest', function (peerId, peerInfo, isSelf)) {
+   *   SkylinkDemo.on('peerCallRequest', function (peerId, peerInfo, isSelf)) {
    *     if (!isSelf) {
-   *       if (peerInfo.call.status === SkywayDemo.CALL_STATUS.REQUEST_CALL) {
+   *       if (peerInfo.call.status === SkylinkDemo.CALL_STATUS.REQUEST_CALL) {
    *         var result = confirm('Do you want to accept the call?');
-   *         SkywayDemo.acceptRequestCall(peerId, result);
+   *         SkylinkDemo.acceptRequestCall(peerId, result);
    *       }
    *     }
    *   });
    * @trigger peerCallRequest
    * @since 0.1.0
    */
-  SkywayCC.prototype.acceptRequestCall = function (agentPeerId, accept) {
+  SkylinkCC.prototype.acceptRequestCall = function (agentPeerId, accept) {
     this._handleCall(agentPeerId, {
       status: ((accept) ? this.CALL_READY_STATE.ACCEPTED_CALL :
         this.CALL_READY_STATE.REJECTED_CALL),
@@ -489,11 +498,11 @@
    * @return {JSON} User information object
    * @return {JSON} Peer information object
    * @example
-   *   SkywayDemo.on('peerCallRequest', function (peerId, peerInfo, isSelf)) {
+   *   SkylinkDemo.on('peerCallRequest', function (peerId, peerInfo, isSelf)) {
    *     if (!isSelf) {
-   *       if (peerInfo.call.status === SkywayDemo.CALL_STATUS.START_CALL) {
-   *         SkywayDemo.startRequestCall(peerId, function (userInfo, peerInfo) {
-   *           SkywayDemo.joinRoom(peerInfo.call.targetRoom, {
+   *       if (peerInfo.call.status === SkylinkDemo.CALL_STATUS.START_CALL) {
+   *         SkylinkDemo.startRequestCall(peerId, function (userInfo, peerInfo) {
+   *           SkylinkDemo.joinRoom(peerInfo.call.targetRoom, {
    *             audio: true,
    *             video: true
    *           });
@@ -504,7 +513,7 @@
    * @trigger peerCallRequest, peerLeft
    * @since 0.2.0
    */
-  SkywayCC.prototype.startRequestCall = function (targetPeerId, callback) {
+  SkylinkCC.prototype.startRequestCall = function (targetPeerId, callback) {
     var self = this;
     var peerInfo;
     var doLeaveRoom = function () {
@@ -551,13 +560,15 @@
    * @param {Boolean} peerInfo.mediaStatus.videoMuted If Peer's video stream is muted.
    * @param {String|JSON} peerInfo.userData Peer custom data
    * @param {JSON} peerInfo.call Peer call status object.
-   * @param {Integer} peerInfo.call.status Peer call status [Rel: SkywayCC.CALL_STATUS]
-   * @param {String} peerInfo.call.peerType Peer user type [Rel: SkywayCC.PEER_TYPE]
+   * @param {Integer} peerInfo.call.status Peer call status [Rel: SkylinkCC.CALL_STATUS]
+   * @param {String} peerInfo.call.peerType Peer user type [Rel: SkylinkCC.PEER_TYPE]
    * @param {String} peerInfo.call.targetPeerId PeerId of the peer the call request
    *   is directed to.
    * @param {String} peerInfo.call.targetRoom Room that the peer requests to join.
    * @param {Boolean} isSelf Is the peer self.
    * @since 0.1.0
    */
-  SkywayCC.prototype._events.peerCallRequest = [];
+  SkylinkCC.prototype._events.peerCallRequest = [];
+
+  SkywayCC = SkylinkCC;
 }).call(this);
