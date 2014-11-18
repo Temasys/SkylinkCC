@@ -5,7 +5,7 @@
  */
 (function() {
 /**
- * SkylinkCC is a implementation from Skyway to create a control center like
+ * SkylinkCC is a implementation from Skylink to create a control center like
  * use-case. Things to take note are:
  * - Skyway.init() is required to be called before
  *   {{#crossLink "SkylinkCC/connect:method"}}connect(){{/crossLink}}
@@ -26,6 +26,7 @@
  *     defaultRoom: 'default',
  *     apiKey: 'apiKey'
  *   });
+ * @since 0.1.0
  */
 function SkylinkCC() {
   if (!Skylink) {
@@ -41,7 +42,7 @@ this.SkylinkCC = SkylinkCC;
  * @attribute VERSION
  * @type String
  * @readOnly
- * @for SkylinkCCCC
+ * @for SkylinkCC
  * @since 0.1.0
  */
 SkylinkCC.prototype.VERSION = '@@version';
@@ -52,7 +53,7 @@ SkylinkCC.prototype.VERSION = '@@version';
  * @type Boolean
  * @private
  * @required
- * @for SkylinkCCCC
+ * @for SkylinkCC
  * @since 0.1.0
  */
 SkylinkCC.prototype._in_lobby = false;
@@ -63,7 +64,7 @@ SkylinkCC.prototype._in_lobby = false;
  * @type String
  * @private
  * @required
- * @for SkylinkCCCC
+ * @for SkylinkCC
  * @since 0.1.0
  */
 SkylinkCC.prototype._defaultLobbyRoom = 'MAIN';
@@ -75,7 +76,7 @@ SkylinkCC.prototype._defaultLobbyRoom = 'MAIN';
  * @default _defaultLobbyRoom
  * @private
  * @required
- * @for SkylinkCCCC
+ * @for SkylinkCC
  * @since 0.1.0
  */
 SkylinkCC.prototype._lobbyRoom = false;
@@ -91,7 +92,7 @@ SkylinkCC.prototype._lobbyRoom = false;
  * @param {Integer} START_CALL    Step 4. Agent and Client is ready to start the call.
  * @param {Intger}
  * @readOnly
- * @for SkylinkCCCC
+ * @for SkylinkCC
  * @since 0.1.0
  */
 SkylinkCC.prototype.CALL_READY_STATE = {
@@ -135,7 +136,7 @@ SkylinkCC.prototype.CALL_READY_STATE = {
  *   info.call.targetPeerId if not specified.
  * @required
  * @private
- * @for SkylinkCCCC
+ * @for SkylinkCC
  * @since 0.1.0
  */
 SkylinkCC.prototype._user = null;
@@ -145,7 +146,7 @@ SkylinkCC.prototype._user = null;
  * @attribute _temp
  * @type Array
  * @private
- * @for SkylinkCCCC
+ * @for SkylinkCC
  * @since 0.1.0
  */
 SkylinkCC.prototype._temp = [];
@@ -157,7 +158,7 @@ SkylinkCC.prototype._temp = [];
  * @param {String} CUSTOMER  User is customer
  * @param {String} AGENT     User is agent
  * @readOnly
- * @for SkylinkCCCC
+ * @for SkylinkCC
  * @since 0.1.0
  */
 SkylinkCC.prototype.PEER_TYPE = {
@@ -203,7 +204,7 @@ var _enableDebugMode = false;
 
 /**
  * Logs all the console information.
- * @method _log
+ * @method _logFn
  * @param {String} logLevel The log level.
  * @param {Array|String} message The console message.
  * @param {String} message.0 The targetPeerId the message is targeted to.
@@ -400,9 +401,9 @@ var log = {
  *     'UUID': 'XXX-XXX-XXXX'
  *   }, SkylinkDemo.PEER_TYPE.AGENT);
  * @trigger peerJoined
- * @for SkylinkCCCC
+ * @for SkylinkCC
  * @required
- * @for SkylinkCCCC
+ * @for SkylinkCC
  * @since 0.1.0
  */
 SkylinkCC.prototype.connect = function (lobbyRoom, userData, peerType) {
@@ -437,6 +438,7 @@ SkylinkCC.prototype.connect = function (lobbyRoom, userData, peerType) {
  * @param {String} message.type The type of message received.
  * @trigger peerJoined
  * @private
+ * @overwritten_from SkylinkJS
  * @since 0.3.0
  */
 SkylinkCC.prototype._inRoomHandler = function(message) {
@@ -498,6 +500,7 @@ SkylinkCC.prototype._inRoomHandler = function(message) {
  * @param {String} message.type The type of the message.
  * @trigger privateMessage, peerCallRequest
  * @private
+ * @overwritten_from SkylinkJS
  * @since 0.3.0
  */
 SkylinkCC.prototype._privateMessageHandler = function(message) {
@@ -530,6 +533,7 @@ SkylinkCC.prototype._privateMessageHandler = function(message) {
  * @param {String} message.type The type of the message.
  * @trigger publicMessage, peerCallRequest
  * @private
+ * @overwritten_from SkylinkJS
  * @since 0.1.0
  */
 SkylinkCC.prototype._publicMessageHandler = function(message) {

@@ -148,7 +148,7 @@ module.exports = function(grunt) {
         version: '<%= pkg.version %>',
         url: '<%= pkg.homepage %>',
         options: {
-          paths: 'source/',
+          paths: ['source/', 'node_modules/skylinkjs/source'],
           outdir: 'doc/',
           themedir: 'doc-style'
         }
