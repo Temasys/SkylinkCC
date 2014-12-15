@@ -17,33 +17,76 @@ You will require to setup your own `config.js` file to place your API key. Check
 
 
 #### Need help or want something changed?
-
 Please read how you can find help, contribute and support us advancing SkylinkCC on [our Github Page](http://temasys.github.io/support).
 
-
 ## How to setup this project
-
-- Install or update to the latest version of node and npm
-- Install `grunt-cli` (See: http://gruntjs.com/getting-started)
-- Run `npm install` to install dev dependencies.
-- Run `npm install -g browserify` and `npm install -g testling` (might require sudo) to install the necessary tools to test locally
-- Run `npm start` to start a local webserver to be able access the demo and doc folders (WebRTC won't work from your local file-system). This will popup Chrome (Mac). You can configure a different browsers in the `start.sh` file.
+1. Clone or download this repository via [Git](http://git-scm.com/download) terminal:
+```
+git clone https://github.com/Temasys/SkywayCC.git
+```
+2. Install all required SkylinkCC dependencies:
+```
+npm install
+```
+3. Install Grunt to run tasks:
+```
+npm install grunt -g
+npm install grunt-cli -g
+```
+4. Install Browserify and Testling to run test scripts :
+```
+npm install browserify -g
+npm install testling -f
+```
+5. Run the start script to start a local webserver to be able access the demo and doc folders. This will popup Chrome (Mac). You can configure a different browsers in the `start.sh` file.
+```
+npm start
+# or
+sh start.sh
+```
 
 ## Development
 
-- Run `npm test` to execute jshint and run the tests in your local Chrome (Mac). You can configure this in the `test.sh` file.
-- Run `grunt jshint` to run jshint on its own.
-- Run `grunt publish` to create production version in `publish` folder and generate the documentation in `doc` folder
+For developers making edits on the source code, here are the commands to make sure it is Skylink friendly:
+
+- `grunt jshint` : To check for code formatting and syntax errors.
+- `grunt yuidoc` : To generate document from code.
+- `grunt dev` : To run and compile all the codes.
+- `grunt publish` : To run when code is ready for next release.
+
+
+#### Commit message format
+
+Here's the format to push commits into SkylinkCC:
+
+`[Ticket][Type: DOC|DEMO|STY|ENH|REF|DEP|BUG][WIP|<null>]: Commit name`
+
+- `DOC` : This commit is related to documentation changes.
+- `DEMO` : This commit is related to demo changes.
+- `STY` : This commit is related to interface styling changes.
+- `ENH` : This commit is related to an enhancement of a feature or new feature. Some improvements.
+- `REF` : This commit is to upgrade the dependencies reference or changes to the references in Skylink.
+- `DEP` : This commit is to upgrade the dependencies. _e.g. socket.io-client 1.2.1 upgrade_
+- `BUG` : This commit is to fix a bug.
+- `WIP` : This commit related to the ticket state is still in progress. Incomplete
+
+__Examples:__<br>
+- Commit that's a new feature but still in progress<br>
+  `[#12][ENH][WIP]: New feature in progress.`<br>
+- Commit that's a bug fix that has been completed<br>
+  `[#15][BUG]: Fix for new bug found.`
 
 ## What's included?
 
 #### demo
 
-Some demos to help with the development. You may access a simple demo called `app` from `http://localhost:8028/demo/app/{agent|client}.html`.
+Some demos to help with the development.
+
+Create your own `config.js` file with your own API keys to use demo in the `app` folder.
 
 #### doc
 
-YUI documentation for the Skyway object and its events
+YUI documentation for the SkylinkCC and SkylinkJS object and its events
 
 #### doc-style
 
@@ -55,13 +98,11 @@ The production version of the library and a minified copy of it
 
 #### source
 
-The SkylinkCC.js library development files
+The skylinkcc.js library development files
 
 #### tests
 
-Tape/Testling tests, currently work-in-progress
-
+Coming soon.
 
 ## License
-
 [APACHE 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
