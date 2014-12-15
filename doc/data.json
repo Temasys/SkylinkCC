@@ -231,12 +231,12 @@
             "line": 50,
             "description": "State if User is in lobby room or not",
             "itemtype": "attribute",
-            "name": "_in_lobby",
+            "name": "_inLobby",
             "type": "Boolean",
             "access": "private",
             "tagname": "",
             "required": 1,
-            "since": "0.1.0",
+            "since": "0.3.1",
             "class": "SkylinkCC"
         },
         {
@@ -312,166 +312,41 @@
         {
             "file": "source/skylinkcc.js",
             "line": 106,
-            "description": "User object",
+            "description": "Peer call status object.",
             "itemtype": "attribute",
             "name": "_user",
             "type": "JSON",
             "params": [
                 {
-                    "name": "id",
-                    "description": "User Session ID",
+                    "name": "status",
+                    "description": "The current ready state of the user's call.\n  [Rel: SkylinkCC.CALL_READY_STATE]",
+                    "type": "Integer"
+                },
+                {
+                    "name": "targetPeerId",
+                    "description": "PeerId the call to direct to.",
                     "type": "String"
                 },
                 {
-                    "name": "peer",
-                    "description": "PeerConnection object",
-                    "type": "Object"
-                },
-                {
-                    "name": "sid",
-                    "description": "User Secret Session ID",
+                    "name": "peerType",
+                    "description": "Peer type [Rel: SkylinkCC.PEER_TYPE]",
                     "type": "String"
                 },
                 {
-                    "name": "apiOwner",
-                    "description": "Owner of the room",
+                    "name": "targetRoom",
+                    "description": "The targeted Room to join. Default is\n  info.call.targetPeerId if not specified.",
                     "type": "String"
-                },
-                {
-                    "name": "streams",
-                    "description": "Array of User's MediaStream",
-                    "type": "Array"
-                },
-                {
-                    "name": "timestamp",
-                    "description": "User's timestamp",
-                    "type": "String"
-                },
-                {
-                    "name": "token",
-                    "description": "User access token",
-                    "type": "String"
-                },
-                {
-                    "name": "info",
-                    "description": "Optional. User information",
-                    "type": "JSON",
-                    "props": [
-                        {
-                            "name": "settings",
-                            "description": "Peer stream settings",
-                            "type": "JSON",
-                            "props": [
-                                {
-                                    "name": "audio",
-                                    "description": "",
-                                    "type": "Boolean|JSON"
-                                },
-                                {
-                                    "name": "audio.stereo",
-                                    "description": "",
-                                    "type": "Boolean"
-                                },
-                                {
-                                    "name": "video",
-                                    "description": "",
-                                    "type": "Boolean|JSON"
-                                },
-                                {
-                                    "name": "video.resolution",
-                                    "description": "[Rel: SkylinkCC.VIDEO_RESOLUTION]",
-                                    "type": "Bolean|JSON"
-                                },
-                                {
-                                    "name": "video.resolution.width",
-                                    "description": "",
-                                    "type": "Integer"
-                                },
-                                {
-                                    "name": "video.resolution.height",
-                                    "description": "",
-                                    "type": "Integer"
-                                },
-                                {
-                                    "name": "video.frameRate",
-                                    "description": "",
-                                    "type": "Integer"
-                                }
-                            ]
-                        },
-                        {
-                            "name": "mediaStatus",
-                            "description": "Peer stream status.",
-                            "type": "JSON",
-                            "props": [
-                                {
-                                    "name": "audioMuted",
-                                    "description": "If Peer's Audio stream is muted.",
-                                    "type": "Boolean"
-                                },
-                                {
-                                    "name": "videoMuted",
-                                    "description": "If Peer's Video stream is muted.",
-                                    "type": "Boolean"
-                                }
-                            ]
-                        },
-                        {
-                            "name": "userData",
-                            "description": "Peer custom data",
-                            "type": "String|JSON"
-                        },
-                        {
-                            "name": "call",
-                            "description": "Peer call status object.",
-                            "type": "JSON",
-                            "props": [
-                                {
-                                    "name": "status",
-                                    "description": "The current ready state of the user's call.\n  [Rel: SkylinkCC.CALL_READY_STATE]",
-                                    "type": "Integer"
-                                },
-                                {
-                                    "name": "targetPeerId",
-                                    "description": "PeerId the call to direct to.",
-                                    "type": "String"
-                                },
-                                {
-                                    "name": "peerType",
-                                    "description": "Peer type [Rel: SkylinkCC.PEER_TYPE]",
-                                    "type": "String"
-                                },
-                                {
-                                    "name": "targetRoom",
-                                    "description": "The targeted Room to join. Default is\n  info.call.targetPeerId if not specified.",
-                                    "type": "String"
-                                }
-                            ]
-                        }
-                    ]
                 }
             ],
             "required": 1,
             "access": "private",
             "tagname": "",
-            "since": "0.1.0",
+            "since": "0.4.0",
             "class": "SkylinkCC"
         },
         {
             "file": "source/skylinkcc.js",
-            "line": 144,
-            "description": "Object to store temporary information",
-            "itemtype": "attribute",
-            "name": "_temp",
-            "type": "Array",
-            "access": "private",
-            "tagname": "",
-            "since": "0.1.0",
-            "class": "SkylinkCC"
-        },
-        {
-            "file": "source/skylinkcc.js",
-            "line": 154,
+            "line": 123,
             "description": "If peer is agent or customer. Types are:",
             "itemtype": "attribute",
             "name": "PEER_TYPE",
@@ -494,392 +369,7 @@
         },
         {
             "file": "source/skylinkcc.js",
-            "line": 169,
-            "description": "The log key",
-            "type": "String",
-            "global": "true",
-            "readonly": "",
-            "since": "0.3.0",
-            "class": "SkylinkCC"
-        },
-        {
-            "file": "source/skylinkcc.js",
-            "line": 179,
-            "description": "The log level of Skylink",
-            "itemtype": "attribute",
-            "name": "_logLevel",
-            "type": "String",
-            "default": "Skylink.LOG_LEVEL.DEBUG",
-            "required": 1,
-            "global": "true",
-            "access": "private",
-            "tagname": "",
-            "since": "0.3.0",
-            "class": "SkylinkCC"
-        },
-        {
-            "file": "source/skylinkcc.js",
-            "line": 192,
-            "description": "The current state if debugging mode is enabled.",
-            "itemtype": "attribute",
-            "name": "_enableDebugMode",
-            "type": "Boolean",
-            "default": "false",
-            "access": "private",
-            "tagname": "",
-            "required": 1,
-            "global": "true",
-            "since": "0.3.0",
-            "class": "SkylinkCC"
-        },
-        {
-            "file": "source/skylinkcc.js",
-            "line": 205,
-            "description": "Logs all the console information.",
-            "itemtype": "method",
-            "name": "_logFn",
-            "params": [
-                {
-                    "name": "logLevel",
-                    "description": "The log level.",
-                    "type": "String"
-                },
-                {
-                    "name": "message",
-                    "description": "The console message.",
-                    "type": "Array|String",
-                    "props": [
-                        {
-                            "name": "0",
-                            "description": "The targetPeerId the message is targeted to.",
-                            "type": "String"
-                        },
-                        {
-                            "name": "1",
-                            "description": "The interface the message is targeted to.",
-                            "type": "String"
-                        },
-                        {
-                            "name": "2",
-                            "description": "The events the message is targeted to.",
-                            "type": "String|Array"
-                        },
-                        {
-                            "name": "3:",
-                            "description": "The log message.",
-                            "type": "String"
-                        }
-                    ]
-                },
-                {
-                    "name": "debugObject",
-                    "description": "The console parameter string or object.",
-                    "type": "Object|String",
-                    "optional": true
-                }
-            ],
-            "access": "private",
-            "tagname": "",
-            "required": 1,
-            "global": "true",
-            "since": "0.3.0",
-            "class": "SkylinkCC"
-        },
-        {
-            "file": "source/skylinkcc.js",
-            "line": 265,
-            "description": "Logs all the console information.",
-            "itemtype": "attribute",
-            "name": "log",
-            "type": "JSON",
-            "params": [
-                {
-                    "name": "debug",
-                    "description": "For debug mode.",
-                    "type": "Function"
-                },
-                {
-                    "name": "log",
-                    "description": "For log mode.",
-                    "type": "Function"
-                },
-                {
-                    "name": "info",
-                    "description": "For info mode.",
-                    "type": "Function"
-                },
-                {
-                    "name": "warn",
-                    "description": "For warn mode.",
-                    "type": "Function"
-                },
-                {
-                    "name": "serror",
-                    "description": "For error mode.",
-                    "type": "Function"
-                }
-            ],
-            "access": "private",
-            "tagname": "",
-            "required": 1,
-            "global": "true",
-            "since": "0.3.0",
-            "class": "SkylinkCC"
-        },
-        {
-            "file": "source/skylinkcc.js",
-            "line": 280,
-            "description": "Outputs a debug log in the console.",
-            "itemtype": "method",
-            "name": "log.debug",
-            "params": [
-                {
-                    "name": "message",
-                    "description": "or the message",
-                    "type": "Array|String",
-                    "props": [
-                        {
-                            "name": "0",
-                            "description": "The targetPeerId the log is targetted to",
-                            "type": "String"
-                        },
-                        {
-                            "name": "1",
-                            "description": "he interface the log is targetted to",
-                            "type": "String"
-                        },
-                        {
-                            "name": "2",
-                            "description": "The related names, keys or events to the log",
-                            "type": "String|Array"
-                        },
-                        {
-                            "name": "3",
-                            "description": "The log message.",
-                            "type": "String"
-                        }
-                    ]
-                },
-                {
-                    "name": "object",
-                    "description": "The log object.",
-                    "type": "String|Object",
-                    "optional": true
-                }
-            ],
-            "example": [
-                "\n  // Logging for message\n  log.debug('This is my message', object);"
-            ],
-            "access": "private",
-            "tagname": "",
-            "required": 1,
-            "global": "true",
-            "since": "0.3.0",
-            "class": "SkylinkCC"
-        },
-        {
-            "file": "source/skylinkcc.js",
-            "line": 298,
-            "description": "Outputs a normal log in the console.",
-            "itemtype": "method",
-            "name": "log.log",
-            "params": [
-                {
-                    "name": "message",
-                    "description": "or the message",
-                    "type": "Array|String",
-                    "props": [
-                        {
-                            "name": "0",
-                            "description": "The targetPeerId the log is targetted to",
-                            "type": "String"
-                        },
-                        {
-                            "name": "1",
-                            "description": "he interface the log is targetted to",
-                            "type": "String"
-                        },
-                        {
-                            "name": "2",
-                            "description": "The related names, keys or events to the log",
-                            "type": "String|Array"
-                        },
-                        {
-                            "name": "3",
-                            "description": "The log message.",
-                            "type": "String"
-                        }
-                    ]
-                },
-                {
-                    "name": "object",
-                    "description": "The log object.",
-                    "type": "String|Object",
-                    "optional": true
-                }
-            ],
-            "example": [
-                "\n  // Logging for message\n  log.log('This is my message', object);"
-            ],
-            "access": "private",
-            "tagname": "",
-            "required": 1,
-            "global": "true",
-            "since": "0.3.0",
-            "class": "SkylinkCC"
-        },
-        {
-            "file": "source/skylinkcc.js",
-            "line": 316,
-            "description": "Outputs an info log in the console.",
-            "itemtype": "method",
-            "name": "log.info",
-            "params": [
-                {
-                    "name": "message",
-                    "description": "or the message",
-                    "type": "Array|String",
-                    "props": [
-                        {
-                            "name": "0",
-                            "description": "The targetPeerId the log is targetted to",
-                            "type": "String"
-                        },
-                        {
-                            "name": "1",
-                            "description": "he interface the log is targetted to",
-                            "type": "String"
-                        },
-                        {
-                            "name": "2",
-                            "description": "The related names, keys or events to the log",
-                            "type": "String|Array"
-                        },
-                        {
-                            "name": "3",
-                            "description": "The log message.",
-                            "type": "String"
-                        }
-                    ]
-                },
-                {
-                    "name": "object",
-                    "description": "The log object.",
-                    "type": "String|Object",
-                    "optional": true
-                }
-            ],
-            "example": [
-                "\n  // Logging for message\n  log.debug('This is my message', object);"
-            ],
-            "access": "private",
-            "tagname": "",
-            "required": 1,
-            "global": "true",
-            "since": "0.3.0",
-            "class": "SkylinkCC"
-        },
-        {
-            "file": "source/skylinkcc.js",
-            "line": 334,
-            "description": "Outputs a warning log in the console.",
-            "itemtype": "method",
-            "name": "log.warn",
-            "params": [
-                {
-                    "name": "message",
-                    "description": "or the message",
-                    "type": "Array|String",
-                    "props": [
-                        {
-                            "name": "0",
-                            "description": "The targetPeerId the log is targetted to",
-                            "type": "String"
-                        },
-                        {
-                            "name": "1",
-                            "description": "he interface the log is targetted to",
-                            "type": "String"
-                        },
-                        {
-                            "name": "2",
-                            "description": "The related names, keys or events to the log",
-                            "type": "String|Array"
-                        },
-                        {
-                            "name": "3",
-                            "description": "The log message.",
-                            "type": "String"
-                        }
-                    ]
-                },
-                {
-                    "name": "object",
-                    "description": "The log object.",
-                    "type": "String|Object",
-                    "optional": true
-                }
-            ],
-            "example": [
-                "\n  // Logging for message\n  log.debug('Here\\'s a warning. Please do xxxxx to resolve this issue', object);"
-            ],
-            "access": "private",
-            "tagname": "",
-            "required": 1,
-            "since": "0.3.0",
-            "class": "SkylinkCC"
-        },
-        {
-            "file": "source/skylinkcc.js",
-            "line": 351,
-            "description": "Outputs an error log in the console.",
-            "itemtype": "method",
-            "name": "log.error",
-            "params": [
-                {
-                    "name": "message",
-                    "description": "or the message",
-                    "type": "Array|String",
-                    "props": [
-                        {
-                            "name": "0",
-                            "description": "The targetPeerId the log is targetted to",
-                            "type": "String"
-                        },
-                        {
-                            "name": "1",
-                            "description": "he interface the log is targetted to",
-                            "type": "String"
-                        },
-                        {
-                            "name": "2",
-                            "description": "The related names, keys or events to the log",
-                            "type": "String|Array"
-                        },
-                        {
-                            "name": "3",
-                            "description": "The log message.",
-                            "type": "String"
-                        }
-                    ]
-                },
-                {
-                    "name": "object",
-                    "description": "The log object.\n  // Logging for external information\n  log.error('There has been an error', object);",
-                    "type": "String|Object",
-                    "optional": true
-                }
-            ],
-            "access": "private",
-            "tagname": "",
-            "required": 1,
-            "global": "true",
-            "since": "0.3.0",
-            "class": "SkylinkCC"
-        },
-        {
-            "file": "source/skylinkcc.js",
-            "line": 386,
+            "line": 138,
             "description": "Connect user to the main lobby.\n- Please call this only after calling Skyway.init().\n- To disconect from the lobby, please call Skyway.leaveRoom().",
             "itemtype": "method",
             "name": "connect",
@@ -910,7 +400,31 @@
         },
         {
             "file": "source/skylinkcc.js",
-            "line": 429,
+            "line": 181,
+            "description": "Gets the peer information.\n- If input peerId is user's id or empty, <b>getPeerInfo()</b>\n  would return user's peer information.",
+            "itemtype": "method",
+            "name": "getPeerInfo",
+            "params": [
+                {
+                    "name": "peerId",
+                    "description": "Id of the peer retrieve we want to retrieve the information.\nIf no id is set, <b>getPeerInfo()</b> returns self peer information.",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Peer information:\n  - settings {JSON}: User stream settings.\n    - audio {Boolean|JSON}: User audio settings.\n      - stereo {Boolean} : User has enabled stereo or not.\n    - video {Boolean|JSON}: User video settings.\n      - resolution {Boolean|JSON}: User video\n    resolution set. [Rel: Skylink.VIDEO_RESOLUTION]\n        - width {Integer}: User video resolution width.\n        - height {Integer}:User video resolution height.\n    - frameRate {Integer}: User video minimum\n    frame rate.\n  - mediaStatus {JSON}: User MediaStream(s) status.\n    - audioMuted {Boolean}: Is user's audio muted.\n    - videoMuted {Boolean}: Is user's vide muted.\n  - userData {String|JSON}: User's custom data set.See\n  {{#crossLink \"Skylink/setUserData:method\"}}setUserData(){{/crossLink}}\n  for more information\n  - userCall {String|JSON}: User call information\n  - call {String|JSON}: Deprecated. User call information\n\nIf peerId doesn't exist return 'null'.",
+                "type": "JSON"
+            },
+            "example": [
+                "\n  // Example 1: To get other peer's information\n  var peerInfo = SkylinkDemo.getPeerInfo(peerId);\n\n  // Example 2: To get own information\n  var userInfo = SkylinkDemo.getPeerInfo();"
+            ],
+            "since": "0.4.0",
+            "class": "SkylinkCC"
+        },
+        {
+            "file": "source/skylinkcc.js",
+            "line": 245,
             "description": "We just joined a room! Let's send a nice message to all to let them know I'm in.",
             "itemtype": "method",
             "name": "_inRoomHandler",
@@ -957,7 +471,7 @@
         },
         {
             "file": "source/skylinkcc.js",
-            "line": 490,
+            "line": 297,
             "description": "Throw an event with the received private message",
             "itemtype": "method",
             "name": "_privateMessageHandler",
@@ -1009,7 +523,7 @@
         },
         {
             "file": "source/skylinkcc.js",
-            "line": 523,
+            "line": 330,
             "description": "Throw an event with the received private message",
             "itemtype": "method",
             "name": "_publicMessageHandler",
@@ -1061,7 +575,7 @@
         },
         {
             "file": "source/skylinkcc.js",
-            "line": 556,
+            "line": 363,
             "description": "Handles all call status event changes",
             "itemtype": "method",
             "name": "_callStatusHandler",
@@ -1122,7 +636,7 @@
         },
         {
             "file": "source/skylinkcc.js",
-            "line": 597,
+            "line": 404,
             "description": "Trigger a event after updating userData.",
             "itemtype": "method",
             "name": "startPeerEvent",
@@ -1159,7 +673,7 @@
         },
         {
             "file": "source/skylinkcc.js",
-            "line": 639,
+            "line": 446,
             "description": "Handles all call states.",
             "itemtype": "method",
             "name": "_handleCall",
@@ -1210,7 +724,7 @@
         },
         {
             "file": "source/skylinkcc.js",
-            "line": 689,
+            "line": 493,
             "description": "Step 1: Agent requests to start the call to client",
             "itemtype": "method",
             "name": "agentRequestCall",
@@ -1235,7 +749,7 @@
         },
         {
             "file": "source/skylinkcc.js",
-            "line": 712,
+            "line": 516,
             "description": "Step 2: Client to accept or reject the call.",
             "itemtype": "method",
             "name": "acceptRequestCall",
@@ -1260,7 +774,7 @@
         },
         {
             "file": "source/skylinkcc.js",
-            "line": 739,
+            "line": 543,
             "description": "Step 3: Start the call. You may call method\n- \"peerLeft\" would be triggered because user left the lobby room\n- Call Skyway.joinRoom() to start the call.\nRequest a call for agent",
             "itemtype": "method",
             "name": "startRequestCall",
@@ -1289,7 +803,7 @@
         },
         {
             "file": "source/skylinkcc.js",
-            "line": 794,
+            "line": 595,
             "description": "Event fired when a peer call request has changed.",
             "itemtype": "event",
             "name": "peerCallRequest",
@@ -7550,55 +7064,55 @@
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source/skylinkcc.js:386"
+            "line": " source/skylinkcc.js:138"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source/skylinkcc.js:429"
+            "line": " source/skylinkcc.js:245"
         },
         {
             "message": "unknown tag: overwritten_from",
-            "line": " source/skylinkcc.js:429"
+            "line": " source/skylinkcc.js:245"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source/skylinkcc.js:490"
+            "line": " source/skylinkcc.js:297"
         },
         {
             "message": "unknown tag: overwritten_from",
-            "line": " source/skylinkcc.js:490"
+            "line": " source/skylinkcc.js:297"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source/skylinkcc.js:523"
+            "line": " source/skylinkcc.js:330"
         },
         {
             "message": "unknown tag: overwritten_from",
-            "line": " source/skylinkcc.js:523"
+            "line": " source/skylinkcc.js:330"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source/skylinkcc.js:556"
+            "line": " source/skylinkcc.js:363"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source/skylinkcc.js:597"
+            "line": " source/skylinkcc.js:404"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source/skylinkcc.js:639"
+            "line": " source/skylinkcc.js:446"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source/skylinkcc.js:689"
+            "line": " source/skylinkcc.js:493"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source/skylinkcc.js:712"
+            "line": " source/skylinkcc.js:516"
         },
         {
             "message": "unknown tag: trigger",
-            "line": " source/skylinkcc.js:739"
+            "line": " source/skylinkcc.js:543"
         },
         {
             "message": "unknown tag: trigger",
@@ -7791,10 +7305,6 @@
         {
             "message": "unknown tag: trigger",
             "line": " node_modules/skylinkjs/source/stream-media.js:628"
-        },
-        {
-            "message": "Missing item type\nThe log key",
-            "line": " source/skylinkcc.js:169"
         },
         {
             "message": "Missing item type\n// resend if failed\nif (iceConnectionState === self.ICE_CONNECTION_STATE.FAILED) {\n  log.debug([targetMid, 'RTCIceConnectionState', null,\n    'Ice connection state failed. Re-negotiating connection']);\n  self._removePeer(targetMid);\n  self._sendChannelMessage({\n    type: self._SIG_MESSAGE_TYPE.WELCOME,\n    mid: self._user.sid,\n    rid: self._room.id,\n    agent: window.webrtcDetectedBrowser,\n    version: window.webrtcDetectedVersion,\n    userInfo: self._user.info,\n    target: targetMid,\n    restartNego: true,\n    hsPriority: -1\n  });",
