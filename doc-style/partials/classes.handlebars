@@ -2,9 +2,6 @@
   <div class="container">
     <h1>
       {{name}} <span>Class</span>
-      {{#if extends}}
-        <small class="extended"><i class="fa fa-share"></i>&nbsp;&nbsp;Extended from <a href="{{extends}}.html">{{extends}}</a></small>
-      {{/if}}
       {{#if foundAt}}
         <small>
           <i class="fa fa-chevron-right"></i>&nbsp;&nbsp;Defined in: <a href="{{foundAt}}">`{{{file}}}:{{{line}}}`</a>
@@ -51,6 +48,13 @@
       <li role="presentation" class="doc-type-select-private">
         <a>Internal <span class="doc-private-label">methods</span></a>
       </li>
+      <div class="nav-links pull-right">
+        <span><i class="fa fa-external-link"></i>&nbsp;&nbsp;Navigate to</span>
+        <ul>
+          <li> <a href="#attr__SIG_MESSAGE_TYPE"> <i class="fa fa-hand-o-right"></i>Signalling Handshake Messaging </a> </li>
+          <li> <a href="#attr__DC_PROTOCOL_TYPE"> <i class="fa fa-exchange"></i>Datachannel Transfer Protocol </a> </li>
+        </ul>
+      </div>
     </ul>
     <div class="section-doc-group">
       <h2 id="current-doc-selected-title">Methods</h2>
@@ -59,7 +63,7 @@
         <div class="list-group-o-wrapper">
           <span class="title">Methods</span>
           <div class="list-group-wrapper">
-            <div class="list-group">
+            <div class="list-group {{#if extends}} extends{{/if}}">
               <a href="#method_{{name}}" class="list-group-item code-menu-item constructor-item">
                 &nbsp;&nbsp;Skylink ()
               </a>

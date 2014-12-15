@@ -1,7 +1,7 @@
 {
   "name": "skylinkcc",
   "description": "Implement Control Center functionalities with SkylinkJS",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "homepage": "https://www.temasys.com.sg/",
   "author": {
     "name": "Temasys Communications Pte. Ltd.",
@@ -22,7 +22,7 @@
     "prestart": "./start.sh;"
   },
   "dependencies": {
-    "skylinkjs": "https://github.com/Temasys/SkylinkJS/archive/0.5.4.tar.gz"
+    "skylinkjs": "https://github.com/Temasys/SkylinkJS/archive/0.5.6.tar.gz"
   },
   "devDependencies": {
     "connect": "2.x.x",

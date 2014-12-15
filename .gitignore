@@ -4,3 +4,5 @@ atlassian*
 .DS_Store
 node_modules
 deploy/*
+demo/config.js
+demo/js/config.js

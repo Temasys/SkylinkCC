@@ -1,8 +1,8 @@
-/*! skylinkcc - v0.3.0 - 2014-11-18 */
+/*! skylinkcc - v0.4.0 - 2014-12-15 */
 
 (function() {
 /**
- * SkylinkCC is a implementation from Skyway to create a control center like
+ * SkylinkCC is a implementation from Skylink to create a control center like
  * use-case. Things to take note are:
  * - Skyway.init() is required to be called before
  *   {{#crossLink "SkylinkCC/connect:method"}}connect(){{/crossLink}}
@@ -23,6 +23,7 @@
  *     defaultRoom: 'default',
  *     apiKey: 'apiKey'
  *   });
+ * @since 0.1.0
  */
 function SkylinkCC() {
   if (!Skylink) {
@@ -38,21 +39,21 @@ this.SkylinkCC = SkylinkCC;
  * @attribute VERSION
  * @type String
  * @readOnly
- * @for SkylinkCCCC
+ * @for SkylinkCC
  * @since 0.1.0
  */
-SkylinkCC.prototype.VERSION = '0.3.0';
+SkylinkCC.prototype.VERSION = '0.4.0';
 
 /**
  * State if User is in lobby room or not
- * @attribute _in_lobby
+ * @attribute _inLobby
  * @type Boolean
  * @private
  * @required
- * @for SkylinkCCCC
- * @since 0.1.0
+ * @for SkylinkCC
+ * @since 0.3.1
  */
-SkylinkCC.prototype._in_lobby = false;
+SkylinkCC.prototype._inLobby = false;
 
 /**
  * The default lobby room.
@@ -60,7 +61,7 @@ SkylinkCC.prototype._in_lobby = false;
  * @type String
  * @private
  * @required
- * @for SkylinkCCCC
+ * @for SkylinkCC
  * @since 0.1.0
  */
 SkylinkCC.prototype._defaultLobbyRoom = 'MAIN';
@@ -72,7 +73,7 @@ SkylinkCC.prototype._defaultLobbyRoom = 'MAIN';
  * @default _defaultLobbyRoom
  * @private
  * @required
- * @for SkylinkCCCC
+ * @for SkylinkCC
  * @since 0.1.0
  */
 SkylinkCC.prototype._lobbyRoom = false;
@@ -88,7 +89,7 @@ SkylinkCC.prototype._lobbyRoom = false;
  * @param {Integer} START_CALL    Step 4. Agent and Client is ready to start the call.
  * @param {Intger}
  * @readOnly
- * @for SkylinkCCCC
+ * @for SkylinkCC
  * @since 0.1.0
  */
 SkylinkCC.prototype.CALL_READY_STATE = {
@@ -100,52 +101,21 @@ SkylinkCC.prototype.CALL_READY_STATE = {
 };
 
 /**
- * User object
+ * Peer call status object.
  * @attribute _user
  * @type JSON
- * @param {String} id User Session ID
- * @param {Object} peer PeerConnection object
- * @param {String} sid User Secret Session ID
- * @param {String} apiOwner Owner of the room
- * @param {Array} streams Array of User's MediaStream
- * @param {String} timestamp User's timestamp
- * @param {String} token User access token
- * @param {JSON} info Optional. User information
- * @param {JSON} info.settings Peer stream settings
- * @param {Boolean|JSON} info.settings.audio
- * @param {Boolean} info.settings.audio.stereo
- * @param {Boolean|JSON} info.settings.video
- * @param {Bolean|JSON} info.settings.video.resolution [Rel: SkylinkCC.VIDEO_RESOLUTION]
- * @param {Integer} info.settings.video.resolution.width
- * @param {Integer} info.settings.video.resolution.height
- * @param {Integer} info.settings.video.frameRate
- * @param {JSON} info.mediaStatus Peer stream status.
- * @param {Boolean} info.mediaStatus.audioMuted If Peer's Audio stream is muted.
- * @param {Boolean} info.mediaStatus.videoMuted If Peer's Video stream is muted.
- * @param {String|JSON} info.userData Peer custom data
- * @param {JSON} info.call Peer call status object.
- * @param {Integer} info.call.status The current ready state of the user's call.
+ * @param {Integer} status The current ready state of the user's call.
  *   [Rel: SkylinkCC.CALL_READY_STATE]
- * @param {String} info.call.targetPeerId PeerId the call to direct to.
- * @param {String} info.call.peerType Peer type [Rel: SkylinkCC.PEER_TYPE]
- * @param {String} info.call.targetRoom The targeted Room to join. Default is
+ * @param {String} targetPeerId PeerId the call to direct to.
+ * @param {String} peerType Peer type [Rel: SkylinkCC.PEER_TYPE]
+ * @param {String} targetRoom The targeted Room to join. Default is
  *   info.call.targetPeerId if not specified.
  * @required
  * @private
- * @for SkylinkCCCC
- * @since 0.1.0
+ * @for SkylinkCC
+ * @since 0.4.0
  */
-SkylinkCC.prototype._user = null;
-
-/**
- * Object to store temporary information
- * @attribute _temp
- * @type Array
- * @private
- * @for SkylinkCCCC
- * @since 0.1.0
- */
-SkylinkCC.prototype._temp = [];
+SkylinkCC.prototype._userCall = null;
 
 /**
  * If peer is agent or customer. Types are:
@@ -154,229 +124,12 @@ SkylinkCC.prototype._temp = [];
  * @param {String} CUSTOMER  User is customer
  * @param {String} AGENT     User is agent
  * @readOnly
- * @for SkylinkCCCC
+ * @for SkylinkCC
  * @since 0.1.0
  */
 SkylinkCC.prototype.PEER_TYPE = {
   CLIENT: 'client',
   AGENT: 'agent'
-};
-
-/**
- * The log key
- * @type String
- * @global true
- * @readOnly
- * @for SkylinkCC
- * @since 0.3.0
- */
-var _LOG_KEY = 'SkylinkJS';
-
-/**
- * The log level of Skylink
- * @attribute _logLevel
- * @type String
- * @default Skylink.LOG_LEVEL.DEBUG
- * @required
- * @global true
- * @private
- * @for SkylinkCC
- * @since 0.3.0
- */
-var _logLevel = 4;
-
-/**
- * The current state if debugging mode is enabled.
- * @attribute _enableDebugMode
- * @type Boolean
- * @default false
- * @private
- * @required
- * @global true
- * @for SkylinkCC
- * @since 0.3.0
- */
-var _enableDebugMode = false;
-
-/**
- * Logs all the console information.
- * @method _log
- * @param {String} logLevel The log level.
- * @param {Array|String} message The console message.
- * @param {String} message.0 The targetPeerId the message is targeted to.
- * @param {String} message.1 The interface the message is targeted to.
- * @param {String|Array} message.2 The events the message is targeted to.
- * @param {String} message.3: The log message.
- * @param {Object|String} [debugObject] The console parameter string or object.
- * @private
- * @required
- * @global true
- * @for SkylinkCC
- * @since 0.3.0
- */
-var _logFn = function(logLevel, message, debugObject) {
-  var levels = ['error', 'warn', 'info', 'log', 'debug'];
-  var outputLog = _LOG_KEY;
-
-  if (_logLevel >= logLevel) {
-    if (typeof message === 'object') {
-      outputLog += (message[0]) ? ' [' + message[0] + '] -' : ' -';
-      outputLog += (message[1]) ? ' <<' + message[1] + '>>' : '';
-      if (message[2]) {
-        outputLog += ' ';
-        if (typeof message[2] === 'object') {
-          for (var i = 0; i < message[2].length; i++) {
-            outputLog += '(' + message[2][i] + ')';
-          }
-        } else {
-          outputLog += '(' + message[2] + ')';
-        }
-      }
-      outputLog += ' ' + message[3];
-    } else {
-      outputLog += ' - ' + message;
-    }
-    // Fallback to log if failure
-    var enableDebugOutputLog = '++ ' + levels[logLevel].toUpperCase() + ' ++  ' + outputLog;
-
-    logLevel = (typeof console[levels[logLevel]] === 'undefined') ? 3 : logLevel;
-
-    if (_enableDebugMode) {
-      var logConsole = (typeof console.trace === 'undefined') ? logLevel[3] : 'trace';
-      if (typeof debugObject !== 'undefined') {
-        console[logConsole](enableDebugOutputLog, debugObject);
-      } else {
-        console[logConsole](enableDebugOutputLog);
-      }
-    } else {
-      if (typeof debugObject !== 'undefined') {
-        console[levels[logLevel]](outputLog, debugObject);
-      } else {
-        console[levels[logLevel]](outputLog);
-      }
-    }
-  }
-};
-
-/**
- * Logs all the console information.
- * @attribute log
- * @type JSON
- * @param {Function} debug For debug mode.
- * @param {Function} log For log mode.
- * @param {Function} info For info mode.
- * @param {Function} warn For warn mode.
- * @param {Function} serror For error mode.
- * @private
- * @required
- * @global true
- * @for SkylinkCC
- * @since 0.3.0
- */
-/**
- * Outputs a debug log in the console.
- * @method log.debug
- * @param {Array|String} message or the message
- * @param {String} message.0 The targetPeerId the log is targetted to
- * @param {String} message.1 he interface the log is targetted to
- * @param {String|Array} message.2 The related names, keys or events to the log
- * @param {String} message.3 The log message.
- * @param {String|Object} [object] The log object.
- * @example
- *   // Logging for message
- *   log.debug('This is my message', object);
- * @private
- * @required
- * @global true
- * @for SkylinkCC
- * @since 0.3.0
- */
-/**
- * Outputs a normal log in the console.
- * @method log.log
- * @param {Array|String} message or the message
- * @param {String} message.0 The targetPeerId the log is targetted to
- * @param {String} message.1 he interface the log is targetted to
- * @param {String|Array} message.2 The related names, keys or events to the log
- * @param {String} message.3 The log message.
- * @param {String|Object} [object] The log object.
- * @example
- *   // Logging for message
- *   log.log('This is my message', object);
- * @private
- * @required
- * @global true
- * @for SkylinkCC
- * @since 0.3.0
- */
-/**
- * Outputs an info log in the console.
- * @method log.info
- * @param {Array|String} message or the message
- * @param {String} message.0 The targetPeerId the log is targetted to
- * @param {String} message.1 he interface the log is targetted to
- * @param {String|Array} message.2 The related names, keys or events to the log
- * @param {String} message.3 The log message.
- * @param {String|Object} [object] The log object.
- * @example
- *   // Logging for message
- *   log.debug('This is my message', object);
- * @private
- * @required
- * @global true
- * @for SkylinkCC
- * @since 0.3.0
- */
-/**
- * Outputs a warning log in the console.
- * @method log.warn
- * @param {Array|String} message or the message
- * @param {String} message.0 The targetPeerId the log is targetted to
- * @param {String} message.1 he interface the log is targetted to
- * @param {String|Array} message.2 The related names, keys or events to the log
- * @param {String} message.3 The log message.
- * @param {String|Object} [object] The log object.
- * @example
- *   // Logging for message
- *   log.debug('Here\'s a warning. Please do xxxxx to resolve this issue', object);
- * @private
- * @required
- * @for SkylinkCC
- * @since 0.3.0
- */
-/**
- * Outputs an error log in the console.
- * @method log.error
- * @param {Array|String} message or the message
- * @param {String} message.0 The targetPeerId the log is targetted to
- * @param {String} message.1 he interface the log is targetted to
- * @param {String|Array} message.2 The related names, keys or events to the log
- * @param {String} message.3 The log message.
- * @param {String|Object} [object] The log object.
- *   // Logging for external information
- *   log.error('There has been an error', object);
- * @private
- * @required
- * @global true
- * @for SkylinkCC
- * @since 0.3.0
- */
-var log = {
-  debug: function (message, object) {
-    _logFn(4, message, object);
-  },
-  log: function (message, object) {
-    _logFn(3, message, object);
-  },
-  info: function (message, object) {
-    _logFn(2, message, object);
-  },
-  warn: function (message, object) {
-    _logFn(1, message, object);
-  },
-  error: function (message, object) {
-    _logFn(0, message, object);
-  }
 };
 
 /**
@@ -397,9 +150,9 @@ var log = {
  *     'UUID': 'XXX-XXX-XXXX'
  *   }, SkylinkDemo.PEER_TYPE.AGENT);
  * @trigger peerJoined
- * @for SkylinkCCCC
+ * @for SkylinkCC
  * @required
- * @for SkylinkCCCC
+ * @for SkylinkCC
  * @since 0.1.0
  */
 SkylinkCC.prototype.connect = function (lobbyRoom, userData, peerType) {
@@ -408,7 +161,7 @@ SkylinkCC.prototype.connect = function (lobbyRoom, userData, peerType) {
     if (self._readyState === self.READY_STATE_CHANGE.COMPLETED &&
       self._user) {
       clearInterval(checkReadyState);
-      self._temp.userCall = {
+      self._userCall = {
         status: self.CALL_READY_STATE.LOBBY,
         peerType: peerType || self.PEER_TYPE.CLIENT
       };
@@ -423,6 +176,70 @@ SkylinkCC.prototype.connect = function (lobbyRoom, userData, peerType) {
 };
 
 /**
+ * Gets the peer information.
+ * - If input peerId is user's id or empty, <b>getPeerInfo()</b>
+ *   would return user's peer information.
+ * @method getPeerInfo
+ * @param {String} [peerId] Id of the peer retrieve we want to retrieve the information.
+ * If no id is set, <b>getPeerInfo()</b> returns self peer information.
+ * @return {JSON} Peer information:
+ *   - settings {JSON}: User stream settings.
+ *     - audio {Boolean|JSON}: User audio settings.
+ *       - stereo {Boolean} : User has enabled stereo or not.
+ *     - video {Boolean|JSON}: User video settings.
+ *       - resolution {Boolean|JSON}: User video
+ *     resolution set. [Rel: Skylink.VIDEO_RESOLUTION]
+ *         - width {Integer}: User video resolution width.
+ *         - height {Integer}:User video resolution height.
+ *     - frameRate {Integer}: User video minimum
+ *     frame rate.
+ *   - mediaStatus {JSON}: User MediaStream(s) status.
+ *     - audioMuted {Boolean}: Is user's audio muted.
+ *     - videoMuted {Boolean}: Is user's vide muted.
+ *   - userData {String|JSON}: User's custom data set.See
+ *   {{#crossLink "Skylink/setUserData:method"}}setUserData(){{/crossLink}}
+ *   for more information
+ *   - userCall {String|JSON}: User call information
+ *   - call {String|JSON}: Deprecated. User call information
+ *
+ * If peerId doesn't exist return 'null'.
+ * @example
+ *   // Example 1: To get other peer's information
+ *   var peerInfo = SkylinkDemo.getPeerInfo(peerId);
+ *
+ *   // Example 2: To get own information
+ *   var userInfo = SkylinkDemo.getPeerInfo();
+ * @for SkylinkCC
+ * @since 0.4.0
+ */
+Skylink.prototype.getPeerInfo = function(peerId) {
+  if (peerId && peerId !== this._user.sid) {
+    // peer info
+    return this._peerInformations[peerId] || {};
+  } else {
+    // user info
+    // prevent undefined error
+    this._user = this._user || {};
+    this._userData = this._userData || '';
+
+    this._mediaStreamsStatus = this._mediaStreamsStatus || {};
+    this._streamSettings = this._streamSettings || {};
+
+    return {
+      userData: this._userData,
+      settings: this._streamSettings,
+      mediaStatus: this._mediaStreamsStatus,
+      agent: {
+        name: window.webrtcDetectedBrowser,
+        version: window.webrtcDetectedVersion
+      },
+      userCall: this._userCall,
+      call: this._userCall
+    };
+  }
+};
+
+/**
  * We just joined a room! Let's send a nice message to all to let them know I'm in.
  * @method _inRoomHandler
  * @param {JSON} message
@@ -434,6 +251,7 @@ SkylinkCC.prototype.connect = function (lobbyRoom, userData, peerType) {
  * @param {String} message.type The type of message received.
  * @trigger peerJoined
  * @private
+ * @overwritten_from SkylinkJS
  * @since 0.3.0
  */
 SkylinkCC.prototype._inRoomHandler = function(message) {
@@ -449,21 +267,12 @@ SkylinkCC.prototype._inRoomHandler = function(message) {
   // It would be better to separate, do we could choose with whom
   // we want to communicate, instead of connecting automatically to all.
   // Re-set the information
-  if (self._user.info.call) {
-    if (self._user.info.call.status === self.CALL_READY_STATE.LOBBY) {
-      self._in_lobby = true;
-    }
-  } else {
-    if (self._temp.userCall) {
-      self._user.info.call = self._temp.userCall;
-      delete self._temp.userCall;
-    }
-    if (self._temp.userData) {
-      self._user.info.userData = self._temp.userData;
-      delete self._temp.userData;
+  if (self._userCall) {
+    if (self._userCall.status === self.CALL_READY_STATE.LOBBY) {
+      self._inLobby = true;
     }
   }
-  self._trigger('peerJoined', self._user.sid, self._user.info, true);
+  self._trigger('peerJoined', self._user.sid, self.getPeerInfo(), true);
 
   // NOTE ALEX: should we wait for local streams?
   // or just go with what we have (if no stream, then one way?)
@@ -476,7 +285,7 @@ SkylinkCC.prototype._inRoomHandler = function(message) {
     rid: self._room.id,
     agent: window.webrtcDetectedBrowser,
     version: window.webrtcDetectedVersion,
-    userInfo: self._user.info
+    userInfo: self.getPeerInfo()
   });
   log.log('Sending enter');
   self._trigger('handshakeProgress', self.HANDSHAKE_PROGRESS.ENTER, self._user.sid);
@@ -495,6 +304,7 @@ SkylinkCC.prototype._inRoomHandler = function(message) {
  * @param {String} message.type The type of the message.
  * @trigger privateMessage, peerCallRequest
  * @private
+ * @overwritten_from SkylinkJS
  * @since 0.3.0
  */
 SkylinkCC.prototype._privateMessageHandler = function(message) {
@@ -527,6 +337,7 @@ SkylinkCC.prototype._privateMessageHandler = function(message) {
  * @param {String} message.type The type of the message.
  * @trigger publicMessage, peerCallRequest
  * @private
+ * @overwritten_from SkylinkJS
  * @since 0.1.0
  */
 SkylinkCC.prototype._publicMessageHandler = function(message) {
@@ -571,7 +382,7 @@ SkylinkCC.prototype._callStatusHandler = function(targetMid, message, isPrivate)
 
   if (isPrivate && checkPrivate) {
     this._peerInformations[targetMid].call = call;
-    this._user.info.call.status = call.status;
+    this._userCall.status = call.status;
     this._trigger('peerCallRequest', targetMid,
       this._peerInformations[targetMid], false);
   } else if (!isPrivate) {
@@ -648,32 +459,29 @@ SkylinkCC.prototype._handleCall = function (peerId, options, callback) {
   if (!this._user) {
     log.error('"_user" object is not loaded yet. Check readyState.');
     return;
-  } else if (!this._user.info) {
-    log.error('"_user.info" object is not loaded yet. Check readyState.');
+  } else if (!this._userCall) {
+    log.error('"_userCall" object is not loaded yet. Check readyState.');
     return;
-  } else if (!this._user.info.call) {
-    log.error('"_user.info.call" object is not loaded yet. Check readyState.');
-    return;
-  } else if (this._user.info.call.peerType !== options.peerType) {
+  } else if (this._userCall.peerType !== options.peerType) {
     log.error('Peer type is not ' + options.peerType + '. Peer type is: "' +
-      this._user.info.call.peerType);
+      this._userCall.peerType);
     return;
   }
-  this._user.info.call.status = options.status || this._user.info.call.status;
-  this._user.info.call.targetPeerId = options.targetPeerId ||
-    this._user.info.call.targetPeerId;
-  this._user.info.call.targetRoom = options.targetRoom ||
-    this._user.info.call.targetRoom || null;
+  this._userCall.status = options.status || this._userCall.status;
+  this._userCall.targetPeerId = options.targetPeerId ||
+    this._userCall.targetPeerId;
+  this._userCall.targetRoom = options.targetRoom ||
+    this._userCall.targetRoom || null;
   this._sendChannelMessage({
     cid: this._key,
     mid: this._user.sid,
     rid: this._room.id,
-    data: this._user.info.call,
+    data: this._userCall,
     target: peerId,
     type: this._SIG_MESSAGE_TYPE.PRIVATE_MESSAGE,
     callStatus: true
   });
-  this._trigger('peerCallRequest', this._user.sid, this._user.info, true);
+  this._trigger('peerCallRequest', this._user.sid, this.getPeerInfo(), true);
   if (callback) {
     callback();
   }
@@ -759,14 +567,11 @@ SkylinkCC.prototype.startRequestCall = function (targetPeerId, callback) {
   var self = this;
   var peerInfo;
   var doLeaveRoom = function () {
-    var userInfo = self._user.info;
     self.leaveRoom();
-    self._in_lobby = false;
-    self._temp.userCall = userInfo.call;
-    self._temp.userData = userInfo.userData;
-    callback(userInfo, peerInfo);
+    self._inLobby = false;
+    callback(self.getPeerInfo(), peerInfo);
   };
-  if (self._user.info.call.peerType === self.PEER_TYPE.AGENT) {
+  if (self._userCall.peerType === self.PEER_TYPE.AGENT) {
     this._handleCall(targetPeerId, {
       status: self.CALL_READY_STATE.START_CALL,
       targetPeerId: targetPeerId,

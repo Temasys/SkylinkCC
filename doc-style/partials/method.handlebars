@@ -51,6 +51,10 @@
         <span class="label label-default" title="This method is static.">static</span>
       {{/if}}
 
+      {{#if scoped}}
+        <span class="label label-default" title="This attribute is scoped within the Skylink space.">scoped</span>
+      {{/if}}
+
       {{#if chainable}}
         <span class="label label-info" title="This method is chainable.">chainable</span>
       {{/if}}
@@ -67,18 +71,21 @@
     <div class="code-item-information">
       {{#if overwritten_from}}
         <span>
-          Inherited from <a href="{{overwritten_from}}.html">{{overwritten_from}}</a> but overwritten in {{for}}.
+          Inherited from
+          <a href="{{crossLinkRaw overwritten_from/class}}#method_{{overwritten_from/name}}">{{overwritten_from/class}}</a>
+          {{#if foundAt}}
+            but overwritten in
+          {{/if}}
         </span>
       {{else}}
         {{#if extended_from}}
-          <small class="extended"><i class="fa fa-share"></i>&nbsp;&nbsp;Extended from <a href="{{extended_from}}.html">{{extended_from}}</a></small>
-          <!--<span>
+          <span>
             Inherited from:
-            <a href="{{crossLinkRaw extended_from}}#method_{{name}}"></a>
-          </span>-->
+            <a href="{{crossLinkRaw extended_from}}#method_{{name}}">{{extended_from}}</a>
+          </span>
         {{else}}
           {{#providedBy}}
-            <!--<span>Provided by the <a href="../modules/{{.}}.html">{{.}}</a> module.</span>-->
+            <span>Provided by the <a href="../modules/{{.}}.html">{{.}}</a> module.</span>
           {{/providedBy}}
         {{/if}}
       {{/if}}

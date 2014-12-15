@@ -207,4 +207,18 @@ module.exports = function(grunt) {
     'yuidoc'
   ]);
 
+  grunt.registerTask('dev', [
+    'jshint',
+    'clean:production',
+    'concat:production',
+    'concat:complete',
+    'versionise',
+    'replace:dist',
+    'uglify:production_min'
+  ]);
+
+  grunt.registerTask('doc', [
+    'yuidoc'
+  ]);
+
 };
