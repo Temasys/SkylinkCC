@@ -2,7 +2,7 @@
     "project": {
         "name": "skylinkcc",
         "description": "Implement Control Center functionalities with SkylinkJS",
-        "version": "0.3.0",
+        "version": "0.4.0",
         "url": "https://www.temasys.com.sg/"
     },
     "files": {

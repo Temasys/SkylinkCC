@@ -1,4 +1,4 @@
-/*! skylinkcc - v0.3.0 - 2014-12-15 */
+/*! skylinkcc - v0.4.0 - 2014-12-15 */
 
 /*! skylinkjs - v0.5.6 - 2014-12-15 */
 
@@ -14696,7 +14696,7 @@ Skylink.prototype._removeSDPFirefoxH264Pref = function(sdpLines) {
   return sdpLines;
 };
 window.Skyway = Skylink;
-}).call(this);;/*! skylinkcc - v0.3.0 - 2014-12-15 */
+}).call(this);;/*! skylinkcc - v0.4.0 - 2014-12-15 */
 
 (function() {
 /**
@@ -14740,7 +14740,7 @@ this.SkylinkCC = SkylinkCC;
  * @for SkylinkCC
  * @since 0.1.0
  */
-SkylinkCC.prototype.VERSION = '0.3.0';
+SkylinkCC.prototype.VERSION = '0.4.0';
 
 /**
  * State if User is in lobby room or not

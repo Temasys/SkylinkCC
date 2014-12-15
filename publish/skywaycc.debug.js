@@ -1,4 +1,4 @@
-/*! skylinkcc - v0.3.0 - 2014-12-15 */
+/*! skylinkcc - v0.4.0 - 2014-12-15 */
 
 (function() {
 /**
@@ -42,7 +42,7 @@ this.SkylinkCC = SkylinkCC;
  * @for SkylinkCC
  * @since 0.1.0
  */
-SkylinkCC.prototype.VERSION = '0.3.0';
+SkylinkCC.prototype.VERSION = '0.4.0';
 
 /**
  * State if User is in lobby room or not
