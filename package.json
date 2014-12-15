@@ -22,7 +22,7 @@
     "prestart": "./start.sh;"
   },
   "dependencies": {
-    "skylinkjs": "https://github.com/Temasys/SkylinkJS/archive/0.5.4.tar.gz"
+    "skylinkjs": "https://github.com/Temasys/SkylinkJS/archive/0.5.6.tar.gz"
   },
   "devDependencies": {
     "connect": "2.x.x",
