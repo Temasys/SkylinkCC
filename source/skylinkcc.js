@@ -3,7 +3,7 @@
  * @extends Skylink
  * @requires Skylink
  */
-(function() {
+
 /**
  * SkylinkCC is a implementation from Skylink to create a control center like
  * use-case. Things to take note are:
@@ -620,5 +620,4 @@ SkylinkCC.prototype.startRequestCall = function (targetPeerId, callback) {
  */
 SkylinkCC.prototype._EVENTS.peerCallRequest = [];
 
-SkywayCC = SkylinkCC;
-}).call(this);
+window.SkywayCC = SkylinkCC;

@@ -24,26 +24,33 @@ module.exports = function(grunt) {
 
     concat: {
       options: {
-        separator: ';',
+        separator: '\n',
         stripBanners: true,
         banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
           '<%= grunt.template.today("yyyy-mm-dd") %> */\n\n'
       },
       production: {
         files: {
-          '<%= production %>/skylinkcc.debug.js': ['<%= source %>/skylinkcc.js'],
-          '<%= production %>/skywaycc.debug.js': ['<%= source %>/skylinkcc.js']
+          '<%= production %>/skylinkcc.debug.js': [
+            'node_modules/skylinkjs/source/template/header.js',
+            'node_modules/skylinkjs/source/*.js',
+            '<%= source %>/skylinkcc.js',
+            'node_modules/skylinkjs/source/template/footer.js'
+          ],
+          '<%= production %>/skywaycc.debug.js': [
+            '<%= production %>/skylinkcc.debug.js'
+          ]
         }
       },
       complete: {
         files: {
           '<%= production %>/skylinkcc.complete.js': [
-            'node_modules/skylinkjs/publish/skylink.complete.js',
+            'node_modules/skylinkjs/node_modules/socket.io-client/socket.io.js',
+            'node_modules/skylinkjs/node_modules/adapterjs/publish/adapter.debug.js',
             '<%= production %>/skylinkcc.debug.js'
           ],
           '<%= production %>/skywaycc.complete.js': [
-            'node_modules/skylinkjs/publish/skyway.complete.js',
-            '<%= production %>/skywaycc.debug.js'
+            '<%= production %>/skylinkcc.complete.js'
           ]
         }
       }
