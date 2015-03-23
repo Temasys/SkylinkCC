@@ -196,6 +196,5 @@ Demo.Skyway.on(Demo.Events.watching, function (advertUrl) {
 });
 //---------------------------------------------------
 Demo.Skyway.on(Demo.Events.onhold, function () {
-  $('.advertDisplay').html('Please hold on while we get the next available agent' +
-    'to assist you. We apologise for the wait.')
+  $('.advertDisplay').html('Agent is currently on-hold.');
 });
