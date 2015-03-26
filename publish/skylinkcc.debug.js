@@ -1,4 +1,4 @@
-/*! skylinkcc - v0.4.0 - 2015-03-23 */
+/*! skylinkcc - v0.4.0 - 2015-03-26 */
 
 (function() {
 

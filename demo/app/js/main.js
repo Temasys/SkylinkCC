@@ -108,17 +108,19 @@ Demo.Skyway.on('incomingStream', function (peerId, stream, isSelf) {
 //---------------------------------------------------
 // Peer request changed. Handshake for call connection
 Demo.Skyway.on('peerCallRequest', function (peerId, peerInfo, isSelf) {
+  var displayName = peerInfo.userData.displayName;
+
   if (isSelf) {
     Demo.User = peerInfo;
   } else {
     Demo.Peers[peerId] = peerInfo;
     switch(peerInfo.call.status) {
     case Demo.Skyway.CALL_READY_STATE.REQUEST_CALL:
-      var result = confirm(peerId + ' requested to call you. Accept?');
+      var result = confirm(displayName + ' requested to call you. Accept?');
       Demo.Skyway.acceptRequestCall(peerId, result);
       break;
     case Demo.Skyway.CALL_READY_STATE.ACCEPTED_CALL:
-      alert(peerId + ' has accepted your call.');
+      alert(displayName + ' has accepted your call.');
       Demo.Skyway.startRequestCall(peerId, function (userInfo, testInfo) {
         console.info(testInfo);
         Demo.Skyway.joinRoom(peerInfo.call.targetRoom, {
@@ -128,7 +130,7 @@ Demo.Skyway.on('peerCallRequest', function (peerId, peerInfo, isSelf) {
       });
       break;
     case Demo.Skyway.CALL_READY_STATE.REJECTED_CALL:
-      alert(peerId + ' has rejected your call.');
+      alert(displayName + ' has rejected your call.');
       break;
     case Demo.Skyway.CALL_READY_STATE.START_CALL:
       Demo.Skyway.startRequestCall(peerId, function (userInfo, testInfo) {
