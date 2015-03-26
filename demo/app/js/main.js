@@ -49,6 +49,21 @@ $(document).ready(function () {
   $('#peerList').on('click', '.clientPeer', function () {
     Demo.Skyway.agentRequestCall($(this).attr('id'));
   });
+  //---------------------------------------------------
+  $('#terminateCall').click(function () {
+    Demo.Skyway.leaveRoom(function () {
+      Demo.Skyway.connect(Demo.API.lobbyRoom, {
+        displayName: $('#displayName').val(),
+        timeStamp: (new Date()).toISOString(),
+        status: Demo.Events.starting
+      }, Demo.Methods.getUserType());
+
+      $('#terminateCall').hide();
+      $('#peerList').show();
+      $('.display-list').show();
+      $('video').attr('src', '');
+    });
+  });
 });
 //---------------------------------------------------
 // Skyway
@@ -104,6 +119,7 @@ Demo.Skyway.on('incomingStream', function (peerId, stream, isSelf) {
   }
   $('.display-list').hide();
   $('#advertVideo').hide();
+  $('#terminateCall').show();
 });
 //---------------------------------------------------
 // Peer request changed. Handshake for call connection
@@ -121,6 +137,7 @@ Demo.Skyway.on('peerCallRequest', function (peerId, peerInfo, isSelf) {
       break;
     case Demo.Skyway.CALL_READY_STATE.ACCEPTED_CALL:
       alert(displayName + ' has accepted your call.');
+      $('#peerList').hide();
       Demo.Skyway.startRequestCall(peerId, function (userInfo, testInfo) {
         console.info(testInfo);
         Demo.Skyway.joinRoom(peerInfo.call.targetRoom, {

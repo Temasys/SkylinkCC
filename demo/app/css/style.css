@@ -88,3 +88,6 @@ video {
 .advertDisplay span {
   font-weight:bold;
 }
+#terminateCall {
+  display: none;
+}
