@@ -7,8 +7,8 @@ SkylinkCC is build on top of [SkylinkJS](https://github.com/Temasys/SkylinkJS) a
 You'll need a Temasys Developer Account and an App key to use this. [Register here to get your App key](https://developer.temasys.com.sg).
 
 - [Getting started with SkylinkJS](http://temasys.github.io/how-to/2014/08/08/Getting_started_with_WebRTC_and_SkylinkJS/)
-- [SkylinkJS API Docs](http://cdn.temasys.com.sg/skylink/skylinkjs/0.5.9/doc/classes/Skylink.html)
-- [SkylinkCC API Docs](http://cdn.temasys.com.sg/skylink/skylinkcc/0.4.0/doc/classes/SkylinkCC.html)
+- [SkylinkJS API Docs](http://cdn.temasys.com.sg/skylink/skylinkjs/latest/doc/classes/Skylink.html)
+- [SkylinkCC API Docs](http://cdn.temasys.com.sg/skylink/skylinkcc/latest/doc/classes/SkylinkCC.html)
 - [Versions](http://github.com/Temasys/SkylinkCC/releases)
 - [Developer Console  - Get your App key](https://developer.temasys.com.sg)
 
