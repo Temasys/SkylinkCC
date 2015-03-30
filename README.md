@@ -1,4 +1,4 @@
-# ![SkylinkCC](http://temasys.github.io/resources/img/SkylinkCC.svg)
+# ![SkylinkCC](http://temasys.github.io/resources/img/skywaycc.svg)
 
 > SkylinkCC is an open-source client-side library for your web-browser that enables any website to easily leverage the capabilities of WebRTC and its direct data streaming powers between agent and clients for audio/video conferencing, creating a control-center environment.
 
