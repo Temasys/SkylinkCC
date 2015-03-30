@@ -8,7 +8,7 @@ You'll need a Temasys Developer Account and an App key to use this. [Register he
 
 - [Getting started with SkylinkJS](http://temasys.github.io/how-to/2014/08/08/Getting_started_with_WebRTC_and_SkylinkJS/)
 - [SkylinkJS API Docs](http://cdn.temasys.com.sg/skylink/skylinkjs/0.5.9/doc/classes/Skylink.html)
-- [SkylinkCC API Docs](http://cdn.temasys.com.sg/skylink/skylinkcc/0.3.0/doc/classes/SkylinkCC.html)
+- [SkylinkCC API Docs](http://cdn.temasys.com.sg/skylink/skylinkcc/0.4.0/doc/classes/SkylinkCC.html)
 - [Versions](http://github.com/Temasys/SkylinkCC/releases)
 - [Developer Console  - Get your App key](https://developer.temasys.com.sg)
 
@@ -20,7 +20,7 @@ Please read how you can find help, contribute and support us advancing SkylinkJS
 ##### Current versions and stability
 Always use the latest versions of the SkylinkCC library as WebRTC is still evolving and we adapt to changes very frequently and we constantly upgrade our SkylinkJS dependency to get updated with the changes.
 
-[Latest version: 0.3.0](https://github.com/Temasys/SkylinkCC/releases/tag/0.3.0).
+[Latest version: 0.4.0](https://github.com/Temasys/SkylinkCC/releases/tag/0.4.0).
 
 ##### Issues faced in SkylinkJS - 0.5.7 and above:
 It's recommended to use the `init()` callback instead of using `readyStateChange` event state to go completed as this may result in an infinite loop.
