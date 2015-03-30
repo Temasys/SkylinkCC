@@ -1,108 +1,91 @@
-# ![SkylinkCC](http://temasys.github.io/resources/img/skywaycc.svg)
+# ![SkylinkCC](http://temasys.github.io/resources/img/SkylinkCC.svg)
 
 > SkylinkCC is an open-source client-side library for your web-browser that enables any website to easily leverage the capabilities of WebRTC and its direct data streaming powers between agent and clients for audio/video conferencing, creating a control-center environment.
 
-You'll need a Temasys Developer Account and an API key to use this. [Get it here](https://developer.temasys.com.sg).
-
 SkylinkCC is build on top of [SkylinkJS](https://github.com/Temasys/SkylinkJS) and works with our Temasys WebRTC Plugin even in Internet Explorer and Safari on Mac and PC.
 
-You will require to setup your own `config.js` file to place your API key. Check out `config-example.js` in the `demo/app/js` folder on how it should be set up.
+You'll need a Temasys Developer Account and an App key to use this. [Register here to get your App key](https://developer.temasys.com.sg).
 
-- [How SkylinkJS works](http://temasys.github.io/how-to/2014/08/08/Getting_started_with_WebRTC_and_SkylinkJS/)
-- [Introducing SkylinkCC](http://temasys.atlassian.net/wiki/display/TPD/Introducing+SkylinkCC)
-- [Introducing SkylinkJS](http://temasys.atlassian.net/wiki/display/TPD/Introducing+SkylinkJS)
-- [SkylinkJS API Docs](http://cdn.temasys.com.sg/skyway/SkylinkJS/0.3.x/doc/classes/Skyway.html)
-- [SkylinkCC API Docs](http://cdn.temasys.com.sg/skyway/SkylinkCC/0.1.0/doc/classes/SkylinkCC.html)
-- [Developer Console](https://developer.temasys.com.sg) - Get your API key
+- [Getting started with SkylinkJS](http://temasys.github.io/how-to/2014/08/08/Getting_started_with_WebRTC_and_SkylinkJS/)
+- [SkylinkJS API Docs](http://cdn.temasys.com.sg/skylink/skylinkjs/0.5.9/doc/classes/Skylink.html)
+- [SkylinkCC API Docs](http://cdn.temasys.com.sg/skylink/skylinkcc/0.3.0/doc/classes/SkylinkCC.html)
+- [Versions](http://github.com/Temasys/SkylinkCC/releases)
+- [Developer Console  - Get your App key](https://developer.temasys.com.sg)
 
 
-#### Need help or want something changed?
-Please read how you can find help, contribute and support us advancing SkylinkCC on [our Github Page](http://temasys.github.io/support).
 
-## How to setup this project
-1. Clone or download this repository via [Git](http://git-scm.com/download) terminal:
+##### Need help or want something changed?
+Please read how you can find help, contribute and support us advancing SkylinkJS on [our Github Page](https://developer.temasys.com.sg/support).
+
+##### Current versions and stability
+Always use the latest versions of the SkylinkCC library as WebRTC is still evolving and we adapt to changes very frequently and we constantly upgrade our SkylinkJS dependency to get updated with the changes.
+
+[Latest version: 0.3.0](https://github.com/Temasys/SkylinkCC/releases/tag/0.3.0).
+
+##### Issues faced in SkylinkJS - 0.5.7 and above:
+It's recommended to use the `init()` callback instead of using `readyStateChange` event state to go completed as this may result in an infinite loop.
+
+Ready state change triggers whenever the current room information is retrieved,  and joining another room instead of the default room will result in a re-retrieval to the API server, causing readyStateChange to trigger again and making SkylinkJS to re-join the room over and over again.
 ```
-git clone https://github.com/Temasys/SkywayCC.git
+// Use this
+sw.init(data, function () {
+  sw.joinRoom('name');
+});
+
+// Instead of
+sw.on('readyStateChange', function (state) {
+  if (state === sw.READY_STATE_CHANGE.COMPLETED) {
+     sw.joinRoom('name');
+  }
+});
 ```
-2. Install all required SkylinkCC dependencies:
+
+## How to build your own SkylinkCC
+In your [Git](http://git-scm.com/download) terminal, execute the following commands:
 ```
+# 1. Clone or download this repository via git terminal.
+
+git clone https://github.com/Temasys/SkylinkCC.git
+
+# 2. Install all required SkylinkCC dependencies. Use (sudo npm install) if required.
+
 npm install
-```
-3. Install Grunt to run tasks:
-```
+
+# 3. Install Grunt to run tasks.
+
 npm install grunt -g
 npm install grunt-cli -g
-```
-4. Install Browserify and Testling to run test scripts :
-```
+
+# 4. Install Browserify and Testling to run test scripts :
+
 npm install browserify -g
 npm install testling -f
-```
-5. Run the start script to start a local webserver to be able access the demo and doc folders. This will popup Chrome (Mac). You can configure a different browsers in the `start.sh` file.
-```
+
+# 5. Run the start script to start a local webserver to be able access the demo and doc folders. This will popup Chrome (Mac). You can configure a different browsers in the start.sh file. Alternatively, you can run (sh start.sh)
+
 npm start
-# or
-sh start.sh
 ```
 
-## Development
-
-For developers making edits on the source code, here are the commands to make sure it is Skylink friendly:
+After making edits, here are some commands to run and build Skylink:
 
 - `grunt jshint` : To check for code formatting and syntax errors.
 - `grunt yuidoc` : To generate document from code.
 - `grunt dev` : To run and compile all the codes.
 - `grunt publish` : To run when code is ready for next release.
 
+__What's included in the repository?__
 
-#### Commit message format
+- `demo` : Contains the sample demos.
 
-Here's the format to push commits into SkylinkCC:
+- `doc` : Contains the generated YUI documentation for the SkylinkCC.
 
-`[Ticket][Type: DOC|DEMO|STY|ENH|REF|DEP|BUG][WIP|<null>]: Commit name`
+- `doc-style` : Contains the template for our YUI documentation.
 
-- `DOC` : This commit is related to documentation changes.
-- `DEMO` : This commit is related to demo changes.
-- `STY` : This commit is related to interface styling changes.
-- `ENH` : This commit is related to an enhancement of a feature or new feature. Some improvements.
-- `REF` : This commit is to upgrade the dependencies reference or changes to the references in Skylink.
-- `DEP` : This commit is to upgrade the dependencies. _e.g. socket.io-client 1.2.1 upgrade_
-- `BUG` : This commit is to fix a bug.
-- `WIP` : This commit related to the ticket state is still in progress. Incomplete
+- `publish` : Contains the production version of the library and a minified copy of it
 
-__Examples:__<br>
-- Commit that's a new feature but still in progress<br>
-  `[#12][ENH][WIP]: New feature in progress.`<br>
-- Commit that's a bug fix that has been completed<br>
-  `[#15][BUG]: Fix for new bug found.`
+- `source` : Contains the skylinkcc.js library development files
 
-## What's included?
-
-#### demo
-
-Some demos to help with the development.
-
-Create your own `config.js` file with your own API keys to use demo in the `app` folder.
-
-#### doc
-
-YUI documentation for the SkylinkCC and SkylinkJS object and its events
-
-#### doc-style
-
-Template for our YUI documentation
-
-#### publish
-
-The production version of the library and a minified copy of it
-
-#### source
-
-The skylinkcc.js library development files
-
-#### tests
-
-Coming soon.
+- `tests` : _Not yet available_. Contains the list of test scripts.
 
 ## License
 [APACHE 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
