@@ -2,7 +2,7 @@
 
 > SkylinkCC is an open-source client-side library for your web-browser that enables any website to easily leverage the capabilities of WebRTC and its direct data streaming powers between agent and clients for audio/video conferencing, creating a control-center environment.
 
-SkylinkCC is build on top of [SkylinkJS](https://github.com/Temasys/SkylinkJS) and works with our Temasys WebRTC Plugin even in Internet Explorer and Safari on Mac and PC.
+SkylinkCC is build on top of [SkylinkJS](https://github.com/Temasys/SkylinkJS) and works with our Temasys WebRTC Plugin even in Internet Explorer and Safari on PC and Mac
 
 You'll need a Temasys Developer Account and an App key to use this. [Register here to get your App key](https://developer.temasys.com.sg).
 
