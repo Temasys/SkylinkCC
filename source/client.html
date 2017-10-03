@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Skylink - Client Demo</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="https://cdn.temasys.com.sg/skylink/skylinkjs/0.6.13/skylink.complete.js" type="text/javascript"></script>
+  <script src="../config.js" type="text/javascript"></script>
+	<script src="js/app.js" type="text/javascript"></script>
+</head>
+<body>
+  <div class="name">
+    <h4 class="header">Hi client, what's your name?</h4>
+    <input id="name" type="text" placeholder="Enter your Name">
+  </div>
+  <div class="a-user">
+    <span class="a-username"></span>
+    <span class="a-calltime"></span>
+    <span class="a-endcall">End call</span>  
+  </div>
+  <div class="a-banner">
+    Please hold while an agent gets back to you. Meanwhile you might view some of our featured products.
+  </div>
+  <video class="av" autoplay="autoplay" loop></video>
+  <video class="self" autoplay="autoplay" muted></video>
+  <video class="peer" autoplay="autoplay" loop></video>
+  <input id="type" type="hidden" value="client">
+</body>
+</html>
